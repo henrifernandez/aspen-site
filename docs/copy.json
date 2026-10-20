@@ -1,0 +1,210 @@
+{
+  "_sobre": "Texto completo do site da Aspen Core em pt-BR. Fonte unica para o Sonnet copiar para o HTML. Cada texto traz a lista de fatos que o sustentam (ids em 'fatos'). Titulos sao escritos em caixa normal e ficam em caixa alta so pelo CSS (text-transform). Nada aqui pode ter travessao. Tudo que tem PENDENTE precisa ser trocado antes de publicar.",
+  "fatos": {
+    "F1": "O protótipo existe como hardware e funciona parcialmente.",
+    "F2": "Hoje o protótipo calcula hash.",
+    "F3": "Hoje o protótipo executa criptografia assimétrica usando um chip de segurança criptográfico (modelo pendente de confirmação).",
+    "F4": "Hoje o protótipo não se conecta a nenhum site, app ou conta.",
+    "F5": "Visão do produto, sempre rotulada como visão: no futuro, encostar a chave no celular para confirmar que é você ao entrar numa conta, além da senha.",
+    "F6": "Lema da marca: Aproxime. Confie. Acesse.",
+    "F7": "Aviso obrigatório: Protótipo em desenvolvimento. O design final pode mudar.",
+    "F8": "Forma do protótipo: bastão de metal preto escovado, cerca de 20 mm de largura por 6,6 mm de espessura, conector USB-C, faixa fina de LED ciano, escudo da marca gravado discretamente, anel no topo.",
+    "F9": "A Aspen Core é uma empresa brasileira em estágio de protótipo e a Aspen Key é o produto em desenvolvimento.",
+    "F10": "O Instagram @aspencore_ publica conteúdo sobre como se defender de golpes digitais.",
+    "F11": "A lista de espera usa um formulário do Tally e serve para avisar sobre o lançamento.",
+    "F12": "Não há data de lançamento nem preço. O briefing proíbe afirmar os dois e manda responder 'Ainda não há data' e 'Ainda não há preço'.",
+    "F13": "As imagens da chave e do celular são renders 3D feitos a partir do protótipo (brand/BRAND.md). As telas de celular mostram um fluxo que ainda não existe.",
+    "F14": "O Tally diz ser feito e hospedado na União Europeia (tally.so/help/cookie-policy, consultado em 20/10/2026).",
+    "F15": "Decisão de produto deste plano: o site é estático, sem cookies e sem rastreadores na primeira versão.",
+    "G1": "Conhecimento geral, sem número: em conta que só pede senha, quem sabe a senha consegue entrar; mensagens com link falso e páginas que imitam bancos são usadas para obter senhas.",
+    "G2": "Definição técnica geral: hash transforma um dado num código curto de tamanho fixo; criptografia assimétrica usa um par de chaves (privada e pública) e permite provar a posse da chave privada sem revelá-la.",
+    "L1": "LGPD, Lei 13.709/2018: consentimento (art. 7º, I), direitos do titular (art. 18), transferência internacional (art. 33).",
+    "P1": "Regra de operação proposta neste plano para a lista de espera (uso só para o aviso, prazo de guarda, resposta em até 15 dias). Pendente de confirmação do Henrique."
+  },
+  "meta": {
+    "index": {
+      "title": {"texto": "Aspen Key | Chave física em desenvolvimento da Aspen Core", "fatos": ["F9", "F1"]},
+      "description": {"texto": "Aspen Key, chave física em desenvolvimento. A ideia é encostar no celular para confirmar que é você, além da senha. Veja o protótipo e entre na lista.", "fatos": ["F1", "F5", "F11"]},
+      "og_title": {"texto": "Aspen Key | Protótipo em desenvolvimento", "fatos": ["F1", "F7"]},
+      "og_description": {"texto": "Uma chave física pensada para confirmar que é você, além da senha. Veja o que o protótipo já faz e entre na lista de espera.", "fatos": ["F5", "F1", "F11"]},
+      "og_image_alt": {"texto": "Aspen Key, bastão preto com faixa de luz ciano e anel de chaveiro, ao lado das palavras Aproxime, Confie e Acesse. Protótipo em desenvolvimento.", "fatos": ["F8", "F6", "F7", "F13"]}
+    },
+    "privacidade": {
+      "title": {"texto": "Política de privacidade | Aspen Core", "fatos": ["L1"]},
+      "description": {"texto": "Como a Aspen Core usa o e-mail que você deixa na lista de espera da Aspen Key, por quanto tempo guarda e como pedir a exclusão.", "fatos": ["F11", "P1", "L1"]}
+    },
+    "erro404": {
+      "title": {"texto": "Página não encontrada | Aspen Core", "fatos": []}
+    }
+  },
+  "comum": {
+    "pular": {"texto": "Pular para o conteúdo", "fatos": []},
+    "marca": {"texto": "Aspen Core", "fatos": ["F9"]},
+    "nav_lista": {"texto": "Lista de espera", "fatos": ["F11"]},
+    "aviso_prototipo": {"texto": "Protótipo em desenvolvimento. O design final pode mudar.", "fatos": ["F7"]},
+    "rascunho_faixa": {"texto": "Rascunho. Os itens marcados como PENDENTE ainda precisam ser trocados antes de publicar.", "fatos": []},
+    "cta_lista": {"texto": "Entrar na lista de espera", "fatos": ["F11"]}
+  },
+  "hero": {
+    "h1": {"texto": "A chave física que vai confirmar que é você", "destaque": "você", "fatos": ["F5", "F8"]},
+    "sub": {"texto": "Essa é a Aspen Key. A ideia é que, ao entrar numa conta, além da senha, você encoste a chave no celular.", "fatos": ["F5"]},
+    "cta": {"texto": "Entrar na lista de espera", "fatos": ["F11"]},
+    "aviso_titulo": {"texto": "Protótipo em desenvolvimento. O design final pode mudar.", "fatos": ["F7"]},
+    "aviso_texto": {"texto": "Hoje ele ainda não se conecta a nenhum site, app ou conta.", "fatos": ["F4"]},
+    "aviso_link": {"texto": "Ver o que o protótipo já faz", "fatos": ["F1", "F2", "F3"]},
+    "figura_legenda": {"texto": "Imagem 3D feita a partir do protótipo.", "fatos": ["F13"]},
+    "figura_alt": {"texto": "Aspen Key, um bastão fino de metal preto escovado com conector USB-C numa ponta, uma faixa fina de luz ciano e um anel de chaveiro na outra ponta.", "fatos": ["F8"]}
+  },
+  "problema": {
+    "h2": {"texto": "Quem descobre a sua senha pode entrar como se fosse você", "destaque": "senha", "fatos": ["G1"]},
+    "texto": {"texto": "Uma mensagem com link falso, uma página que imita a do banco, e a senha que você digita ali vai parar na mão de outra pessoa.", "fatos": ["G1"]},
+    "ponte": {"texto": "A Aspen Key está sendo criada para somar mais uma prova de que é você, além da senha. Uma coisa física, que fica no seu chaveiro.", "fatos": ["F5", "F8"]},
+    "figura_alt": {"texto": "Celular com uma notificação fictícia chamada Aviso de bloqueio, dizendo que a conta será suspensa hoje e trazendo o link site-do-banco.exemplo-falso.", "fatos": ["F13"]},
+    "figura_legenda": {"texto": "Ilustração com um exemplo fictício de mensagem de golpe.", "fatos": ["F13"]},
+    "slot_dado": {"texto": "PENDENTE: dado sobre golpes digitais no Brasil com fonte citada (opcional, sem número até ter fonte).", "fatos": []}
+  },
+  "ideia": {
+    "h2": {"texto": "A ideia em três passos", "fatos": ["F5", "F6"]},
+    "intro": {"texto": "Esta é a visão do produto. Ainda não é assim que o protótipo funciona hoje.", "fatos": ["F5", "F4"]},
+    "passos": [
+      {"nome": {"texto": "Aproxime", "fatos": ["F6"]}, "texto": {"texto": "Na hora de entrar numa conta, depois da senha, você encosta a Aspen Key no celular.", "fatos": ["F5"]}},
+      {"nome": {"texto": "Confie", "fatos": ["F6"]}, "texto": {"texto": "A chave confirma que quem está entrando é você, e não alguém que só sabe a sua senha.", "fatos": ["F5"]}},
+      {"nome": {"texto": "Acesse", "fatos": ["F6"]}, "texto": {"texto": "Com a senha e a chave, você entra na sua conta.", "fatos": ["F5"]}}
+    ],
+    "figura1_alt": {"texto": "Ilustração de um celular na tela de entrar numa conta, com o pedido Confirme com a Aspen Key e a instrução Aproxime a chave do celular.", "fatos": ["F13", "F5"]},
+    "figura2_alt": {"texto": "Ilustração da Aspen Key encostada na lateral de um celular que mostra a mensagem Acesso confirmado.", "fatos": ["F13", "F5"]},
+    "legenda_ilustracao": {"texto": "Ilustração de como será, ainda não funciona assim", "fatos": ["F13", "F4"]}
+  },
+  "prototipo": {
+    "h2": {"texto": "O protótipo hoje", "fatos": ["F1"]},
+    "lead": {"texto": "Ele já existe como peça física e funciona em parte. Aqui está o que ele faz agora e o que ainda falta.", "fatos": ["F1"]},
+    "foto_alt": {"texto": "Imagem de referência do protótipo da Aspen Key, bastão preto com conector USB-C, faixa de luz ciano e anel de chaveiro, sobre fundo escuro.", "fatos": ["F8"]},
+    "foto_legenda": {"texto": "Imagem de referência do protótipo.", "fatos": ["F13"]},
+    "foto_pendente": {"texto": "PENDENTE: trocar pela foto real do protótipo (pendência P01).", "fatos": []},
+    "foto_extra_1_pendente": {"texto": "PENDENTE: foto do protótipo na mão, para mostrar o tamanho (pendência P02).", "fatos": []},
+    "foto_extra_2_pendente": {"texto": "PENDENTE: foto do protótipo com o conector USB-C à mostra (pendência P03).", "fatos": []},
+    "ficha_titulo": {"texto": "Ficha do protótipo", "fatos": ["F8"]},
+    "ficha": [
+      {"rotulo": "Formato", "valor": "Bastão de metal preto escovado", "fatos": ["F8"]},
+      {"rotulo": "Largura", "valor": "Cerca de 20 mm", "fatos": ["F8"]},
+      {"rotulo": "Espessura", "valor": "Cerca de 6,6 mm", "fatos": ["F8"]},
+      {"rotulo": "Conector", "valor": "USB-C", "fatos": ["F8"]},
+      {"rotulo": "Luz", "valor": "Faixa fina de LED ciano", "fatos": ["F8"]},
+      {"rotulo": "Topo", "valor": "Anel para chaveiro", "fatos": ["F8"]},
+      {"rotulo": "Marca", "valor": "Escudo da Aspen gravado de forma discreta", "fatos": ["F8"]},
+      {"rotulo": "Chip", "valor": "Chip de segurança criptográfico", "fatos": ["F3"], "pendente": "PENDENTE_MODELO_CHIP: depois da confirmação do Henrique, pode virar 'Chip de segurança criptográfico ATECC608B'."}
+    ],
+    "detalhes": [
+      {"arquivo": "detalhe-conector", "legenda": "Conector USB-C", "alt": "Close do conector USB-C metálico da Aspen Key.", "fatos": ["F8", "F13"]},
+      {"arquivo": "detalhe-led", "legenda": "Faixa de LED e escudo gravado", "alt": "Close da faixa fina de luz ciano e do escudo da marca gravado no corpo preto.", "fatos": ["F8", "F13"]},
+      {"arquivo": "detalhe-anel", "legenda": "Anel no topo", "alt": "Close da ponta da Aspen Key com o furo e o anel de chaveiro de aço escuro.", "fatos": ["F8", "F13"]}
+    ],
+    "detalhes_legenda": {"texto": "Imagens 3D feitas a partir do protótipo.", "fatos": ["F13"]},
+    "hoje_titulo": {"texto": "Hoje ele faz", "fatos": ["F1"]},
+    "hoje_itens": [
+      {"texto": "Calcula hash.", "fatos": ["F2"]},
+      {"texto": "Executa criptografia assimétrica com um chip de segurança criptográfico.", "fatos": ["F3"]},
+      {"texto": "Existe como peça física, com conector USB-C, faixa de LED e anel.", "fatos": ["F1", "F8"]}
+    ],
+    "ainda_titulo": {"texto": "Ainda não faz", "fatos": ["F4"]},
+    "ainda_itens": [
+      {"texto": "Não se conecta a nenhum site, app ou conta.", "fatos": ["F4"]},
+      {"texto": "Não confirma o seu acesso quando encosta no celular. Isso ainda é a visão do produto.", "fatos": ["F4", "F5"]},
+      {"texto": "Ainda não está à venda.", "fatos": ["F12", "F9"]}
+    ],
+    "link_tecnico": {"texto": "O que é hash e criptografia assimétrica?", "fatos": ["G2"]},
+    "video_titulo": {"texto": "O protótipo funcionando", "fatos": ["F1"]},
+    "video_legenda": {"texto": "Vídeo do protótipo calculando hash e fazendo criptografia assimétrica.", "fatos": ["F2", "F3"]},
+    "video_pendente": {"texto": "PENDENTE: vídeo curto do protótipo calculando hash e fazendo criptografia assimétrica (pendência P04).", "fatos": []},
+    "video_transcricao_titulo": {"texto": "O que aparece no vídeo", "fatos": []},
+    "video_transcricao_pendente": {"texto": "PENDENTE: descrever em 2 a 4 frases, na ordem, o que aparece no vídeo (pendência P05).", "fatos": []},
+    "aviso": {"texto": "Protótipo em desenvolvimento. O design final pode mudar.", "fatos": ["F7"]},
+    "cta": {"texto": "Entrar na lista de espera", "fatos": ["F11"]}
+  },
+  "lista": {
+    "h2": {"texto": "Entre na lista de espera", "fatos": ["F11"]},
+    "texto": {"texto": "Deixe seu e-mail e a gente avisa quando a Aspen Key for lançada. O seu e-mail serve só para esse aviso.", "fatos": ["F11", "P1"]},
+    "carregando": {"texto": "Carregando o formulário...", "fatos": []},
+    "erro_carregar": {"texto": "O formulário não carregou. Você pode abrir a lista de espera em outra aba.", "fatos": []},
+    "link_fallback": {"texto": "Abrir a lista de espera em outra aba", "fatos": ["F11"]},
+    "noscript": {"texto": "Para ver o formulário aqui, ative o JavaScript. Ou abra a lista de espera em outra aba.", "fatos": []},
+    "consentimento": {"texto": "Ao entrar na lista, você aceita receber um e-mail da Aspen Core quando a Aspen Key for lançada. O formulário é do Tally, que guarda os dados na União Europeia. Você pode sair quando quiser. Leia a Política de privacidade.", "fatos": ["F11", "F14", "P1", "L1"]},
+    "confirmacao": {"texto": "Pronto, você está na lista de espera. Quando a Aspen Key for lançada, a gente te avisa por e-mail.", "fatos": ["F11", "P1"]},
+    "contato_outros": {"texto": "Quer falar com a gente sobre investimento, imprensa ou outro assunto? Escreva para contato@seudominio.com.br.", "fatos": [], "pendente": "PENDENTE_EMAIL"},
+    "rascunho_titulo": {"texto": "PENDENTE: endereço do formulário do Tally", "fatos": []},
+    "rascunho_texto": {"texto": "Henrique, crie o formulário no Tally e troque PENDENTE_TALLY_ID pelo código dele em index.html. Enquanto isso, o botão abaixo fica desativado.", "fatos": []},
+    "rascunho_campo_email": {"texto": "Seu e-mail", "fatos": []},
+    "rascunho_placeholder_email": {"texto": "nome@exemplo.com", "fatos": []},
+    "rascunho_checkbox": {"texto": "Quero receber um e-mail quando a Aspen Key for lançada.", "fatos": ["F11"]},
+    "rascunho_botao": {"texto": "Entrar na lista de espera", "fatos": ["F11"]}
+  },
+  "tally": {
+    "_sobre": "Textos para o Henrique configurar dentro do formulario no tally.so. Nomes de menus do Tally nao foram confirmados nesta pesquisa.",
+    "nome_formulario": {"texto": "Lista de espera Aspen Key", "fatos": ["F11"]},
+    "campo_email_pergunta": {"texto": "Seu e-mail", "fatos": []},
+    "campo_email_placeholder": {"texto": "nome@exemplo.com", "fatos": []},
+    "campo_nome_pergunta": {"texto": "Como podemos te chamar? (opcional)", "fatos": []},
+    "campo_checkbox": {"texto": "Quero receber um e-mail quando a Aspen Key for lançada.", "fatos": ["F11"]},
+    "texto_antes_do_botao": {"texto": "Ao entrar na lista, você aceita receber um e-mail da Aspen Core quando a Aspen Key for lançada. O formulário é do Tally, que guarda os dados na União Europeia. Você pode sair quando quiser. Leia a Política de privacidade.", "fatos": ["F11", "F14", "P1"]},
+    "botao": {"texto": "Entrar na lista de espera", "fatos": ["F11"]},
+    "agradecimento_titulo": {"texto": "Pronto, você está na lista", "fatos": ["F11"]},
+    "agradecimento_texto": {"texto": "Quando a Aspen Key for lançada, a gente te avisa por e-mail. Enquanto isso, no Instagram @aspencore_ tem dicas para se defender de golpes digitais.", "fatos": ["F11", "F10"]},
+    "erro_email_invalido": {"texto": "Confira o e-mail. Ele precisa ter o formato nome@exemplo.com.", "fatos": []},
+    "erro_email_vazio": {"texto": "Escreva o seu e-mail para entrar na lista.", "fatos": []},
+    "erro_checkbox": {"texto": "Marque a caixa para receber o aviso de lançamento.", "fatos": []},
+    "campos_ocultos": ["utm_source", "utm_medium", "utm_content"]
+  },
+  "faq": {
+    "h2": {"texto": "Perguntas frequentes", "fatos": []},
+    "itens": [
+      {"id": "faq-funciona", "pergunta": "Já funciona?", "resposta": "Em parte. O protótipo já calcula hash e executa criptografia assimétrica com um chip de segurança criptográfico. Ele ainda não se conecta a nenhum site, app ou conta.", "fatos": ["F1", "F2", "F3", "F4"]},
+      {"id": "faq-senha", "pergunta": "Substitui a minha senha?", "resposta": "Não. A ideia é que a chave venha junto com a senha, como uma confirmação a mais de que é você.", "fatos": ["F5"]},
+      {"id": "faq-data", "pergunta": "Quando lança?", "resposta": "Ainda não há data. Se você entrar na lista de espera, a gente avisa por e-mail quando houver.", "fatos": ["F12", "F11"]},
+      {"id": "faq-preco", "pergunta": "Quanto custa?", "resposta": "Ainda não há preço.", "fatos": ["F12"]},
+      {"id": "faq-tecnico", "pergunta": "O que é hash e criptografia assimétrica?", "resposta": "Hash é um cálculo que transforma qualquer dado num código curto, como uma impressão digital desse dado. Criptografia assimétrica usa um par de chaves, uma secreta e outra que pode ser mostrada, e permite provar quem é sem revelar a parte secreta. O protótipo já faz esses dois tipos de cálculo com um chip de segurança criptográfico.", "fatos": ["G2", "F2", "F3"]},
+      {"id": "faq-design", "pergunta": "Por que o design pode mudar?", "resposta": "Porque é um protótipo. Formato, acabamento e detalhes ainda podem mudar até a versão final.", "fatos": ["F7", "F1"]},
+      {"id": "faq-email", "pergunta": "O que vocês fazem com o meu e-mail?", "resposta": "Usamos só para avisar quando a Aspen Key for lançada. Você pode pedir para sair da lista quando quiser, pelo contato@seudominio.com.br. Os detalhes estão na Política de privacidade.", "fatos": ["F11", "P1"], "pendente": "PENDENTE_EMAIL"},
+      {"id": "faq-quem", "pergunta": "Quem está por trás da Aspen Core?", "resposta": "A Aspen Core é uma empresa brasileira em fase de protótipo, que está desenvolvendo a Aspen Key. No Instagram @aspencore_, a gente publica conteúdo sobre como se defender de golpes digitais.", "fatos": ["F9", "F10"]}
+    ]
+  },
+  "rodape": {
+    "lema_linhas": {"texto": ["Aproxime", "Confie", "Acesse"], "fatos": ["F6"]},
+    "sobre": {"texto": "Aspen Core, empresa brasileira em fase de protótipo.", "fatos": ["F9"]},
+    "instagram": {"texto": "@aspencore_ no Instagram", "url": "https://www.instagram.com/aspencore_/", "fatos": ["F10"]},
+    "contato": {"texto": "contato@seudominio.com.br", "fatos": [], "pendente": "PENDENTE_EMAIL"},
+    "privacidade": {"texto": "Política de privacidade", "fatos": ["L1"]},
+    "aviso": {"texto": "Protótipo em desenvolvimento. O design final pode mudar.", "fatos": ["F7"]},
+    "copyright": {"texto": "© 2026 Aspen Core", "fatos": ["F9"]}
+  },
+  "privacidade": {
+    "h1": {"texto": "Política de privacidade", "fatos": ["L1"]},
+    "atualizada": {"texto": "Atualizada em PENDENTE_DATA.", "fatos": []},
+    "intro": {"texto": "Esta página explica, em linguagem simples, o que a Aspen Core faz com os dados de quem entra na lista de espera da Aspen Key. Ela segue a Lei Geral de Proteção de Dados (LGPD, Lei 13.709/2018).", "fatos": ["L1", "F11"]},
+    "secoes": [
+      {"h2": "Quem cuida dos seus dados", "paragrafos": ["A controladora dos dados é a Aspen Core (PENDENTE_CONTROLADOR: razão social e CNPJ, ou nome completo do responsável se ainda não houver CNPJ). Para qualquer assunto de privacidade, escreva para contato@seudominio.com.br."], "fatos": ["F9", "L1"]},
+      {"h2": "Quais dados a gente coleta", "lista": ["Seu e-mail, que você digita no formulário.", "Seu nome, só se você quiser informar.", "A marcação da campanha que trouxe você até aqui, quando o link tiver uma (por exemplo, utm_source=instagram). Ela diz de onde veio a visita, não quem você é.", "A confirmação de que você marcou a caixa de consentimento e a data da inscrição."], "paragrafos": ["Não pedimos telefone, endereço nem documentos.", "O Tally, que opera o formulário, pode registrar dados técnicos, como endereço IP e tipo de navegador, para o formulário funcionar e evitar abuso. Isso segue a política de privacidade do Tally, em tally.so/privacy."], "fatos": ["F11", "P1"]},
+      {"h2": "Para que usamos", "paragrafos": ["Só para mandar um e-mail avisando quando a Aspen Key for lançada. Não vendemos seus dados, não usamos para propaganda de outras empresas e não montamos perfil sobre você."], "fatos": ["P1"]},
+      {"h2": "Base legal", "paragrafos": ["Consentimento (LGPD, art. 7º, inciso I). Você dá o consentimento ao marcar a caixa no formulário e pode retirar quando quiser."], "fatos": ["L1"]},
+      {"h2": "Com quem compartilhamos", "paragrafos": ["Com ninguém, além do Tally (tally.so), que opera o formulário e guarda as inscrições em servidores na União Europeia. Isso é uma transferência internacional de dados. PENDENTE_TRANSFERENCIA: confirmar com quem cuida da LGPD a base dessa transferência (LGPD, art. 33)."], "fatos": ["F14", "L1"]},
+      {"h2": "Por quanto tempo guardamos", "paragrafos": ["Até mandarmos o aviso de lançamento ou até você pedir para sair, o que acontecer primeiro. Se a Aspen Key não for lançada em até 24 meses depois da sua inscrição, apagamos o seu e-mail. PENDENTE_RETENCAO: Henrique confirmar esse prazo."], "fatos": ["P1"]},
+      {"h2": "Seus direitos", "lista": ["Confirmar se temos dados seus e ver quais são.", "Corrigir dados errados ou desatualizados.", "Pedir a exclusão dos seus dados.", "Retirar o consentimento a qualquer momento.", "Saber com quem compartilhamos seus dados.", "Pedir a portabilidade dos seus dados.", "Pedir a anonimização ou o bloqueio de dados desnecessários.", "Reclamar na Autoridade Nacional de Proteção de Dados (ANPD)."], "fatos": ["L1"]},
+      {"h2": "Como pedir a exclusão ou usar seus direitos", "paragrafos": ["Mande um e-mail para contato@seudominio.com.br, do mesmo endereço que você cadastrou, com o assunto Privacidade. A gente responde em até 15 dias."], "fatos": ["P1", "L1"]},
+      {"h2": "Cookies e rastreadores", "paragrafos": ["Este site não usa cookies nem ferramentas de rastreamento. O formulário é carregado do site do Tally e segue a política dele."], "fatos": ["F15"]},
+      {"h2": "Canal sobre dados pessoais", "paragrafos": ["O canal para falar com a Aspen Core sobre dados pessoais é o contato@seudominio.com.br. PENDENTE_ENCARREGADO: confirmar se a Aspen Core se enquadra como agente de tratamento de pequeno porte (Resolução CD/ANPD nº 2/2022) e, se não, indicar aqui o nome do encarregado."], "fatos": ["L1"]},
+      {"h2": "Idade", "paragrafos": ["A lista de espera é para pessoas com 18 anos ou mais."], "fatos": ["P1"]},
+      {"h2": "Mudanças nesta política", "paragrafos": ["Se esta política mudar, a data no topo da página muda junto."], "fatos": ["P1"]}
+    ],
+    "voltar": {"texto": "Voltar para o início", "fatos": []}
+  },
+  "erro404": {
+    "h1": {"texto": "Página não encontrada", "fatos": []},
+    "texto": {"texto": "O endereço pode ter mudado ou ter sido digitado errado.", "fatos": []},
+    "botao": {"texto": "Voltar para o início", "fatos": []}
+  },
+  "og_imagem": {
+    "marca": {"texto": "Aspen Core", "fatos": ["F9"]},
+    "lema_linhas": {"texto": ["Aproxime", "Confie", "Acesse"], "fatos": ["F6"]},
+    "linha": {"texto": "Aspen Key, chave física em desenvolvimento", "fatos": ["F1", "F8"]},
+    "aviso": {"texto": "Protótipo em desenvolvimento. O design final pode mudar.", "fatos": ["F7"]}
+  }
+}
