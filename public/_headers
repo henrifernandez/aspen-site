@@ -1,0 +1,9 @@
+# PENDENTE P18: se o Cloudflare Web Analytics for ligado, somar static.cloudflareinsights.com em script-src e cloudflareinsights.com em connect-src, e atualizar a secao de cookies da privacidade
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://tally.so; frame-src https://tally.so; connect-src 'self' https://tally.so; img-src 'self' data: https://tally.so; style-src 'self' 'unsafe-inline'; font-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

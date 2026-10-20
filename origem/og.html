@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Imagem de compartilhamento (modelo)</title>
+<style>
+@font-face { font-family: "Space Mono"; font-weight: 400; src: url("../public/assets/fonts/spacemono-400.woff2") format("woff2"); }
+@font-face { font-family: "Space Mono"; font-weight: 700; src: url("../public/assets/fonts/spacemono-700.woff2") format("woff2"); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1200px; height: 630px; overflow: hidden; }
+body { position: relative; font-family: "Space Mono", monospace; color: #EFE8D6; background: linear-gradient(160deg, #0A2935, #061A23); }
+.marca-dagua { position: absolute; width: 760px; height: auto; left: 700px; top: -60px; opacity: 0.06; }
+.chave { position: absolute; height: 600px; width: auto; left: 720px; top: 30px; }
+.coluna { position: absolute; left: 72px; top: 72px; bottom: 72px; width: 640px; display: flex; flex-direction: column; justify-content: space-between; }
+.marca { display: flex; align-items: center; gap: 18px; font-weight: 700; font-size: 26px; letter-spacing: 0.14em; text-transform: uppercase; }
+.marca img { width: 56px; height: 56px; }
+.lema { font-weight: 700; font-size: 76px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; color: #3C94A4; }
+.lema span { display: block; }
+.linha { font-size: 24px; line-height: 1.3; }
+.filete { width: 96px; height: 1px; background: #D2B17A; margin: 18px 0 16px; }
+.aviso { font-size: 22px; line-height: 1.35; }
+</style>
+</head>
+<body>
+<img class="marca-dagua" src="../public/assets/img/marca-dagua-escudo-720.webp" alt="">
+<img class="chave" src="../public/assets/img/hero-chave-3q-1120.webp" alt="">
+<div class="coluna">
+  <div class="marca"><img src="../public/assets/img/escudo-creme-128.webp" alt=""><span>Aspen Core</span></div>
+  <div>
+    <p class="lema"><span>Aproxime</span><span>Confie</span><span>Acesse</span></p>
+  </div>
+  <div>
+    <p class="linha">Aspen Key, chave física em desenvolvimento</p>
+    <div class="filete"></div>
+    <p class="aviso">Protótipo em desenvolvimento. O design final pode mudar.</p>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="pt-BR" class="no-js" data-modo="rascunho"><!-- PENDENTE P19: trocar data-modo="rascunho" por data-modo="publicado" no dia de publicar (index.html, privacidade.html e 404.html) -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aspen Key | Chave física em desenvolvimento da Aspen Core</title>
+<meta name="description" content="Aspen Key, chave física em desenvolvimento. A ideia é encostar no celular para confirmar que é você, além da senha. Veja o protótipo e entre na lista.">
+<link rel="canonical" href="https://seudominio.com.br/"><!-- PENDENTE P08: domínio -->
+<meta name="robots" content="noindex, nofollow"><!-- PENDENTE P19: trocar por "index, follow" ao publicar -->
+<meta name="theme-color" content="#0A2935">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Aspen Core">
+<meta property="og:title" content="Aspen Key | Protótipo em desenvolvimento">
+<meta property="og:description" content="Uma chave física pensada para confirmar que é você, além da senha. Veja o que o protótipo já faz e entre na lista de espera.">
+<meta property="og:url" content="https://seudominio.com.br/"><!-- PENDENTE P08: domínio -->
+<meta property="og:image" content="https://seudominio.com.br/og-image.jpg"><!-- PENDENTE P08: domínio -->
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Aspen Key, bastão preto com faixa de luz ciano e anel de chaveiro, ao lado das palavras Aproxime, Confie e Acesse. Protótipo em desenvolvimento.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aspen Key | Protótipo em desenvolvimento">
+<meta name="twitter:description" content="Uma chave física pensada para confirmar que é você, além da senha. Veja o que o protótipo já faz e entre na lista de espera.">
+<meta name="twitter:image" content="https://seudominio.com.br/og-image.jpg"><!-- PENDENTE P08: domínio -->
+<meta name="twitter:image:alt" content="Aspen Key, bastão preto com faixa de luz ciano e anel de chaveiro, ao lado das palavras Aproxime, Confie e Acesse. Protótipo em desenvolvimento.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/spacemono-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/spacemono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" media="(max-width: 1023px)" fetchpriority="high"
+      imagesrcset="assets/img/hero-chave-deitada-400.webp 400w, assets/img/hero-chave-deitada-800.webp 800w, assets/img/hero-chave-deitada-1200.webp 1200w"
+      imagesizes="(min-width: 768px) 520px, 88vw">
+<link rel="preload" as="image" media="(min-width: 1024px)" fetchpriority="high"
+      imagesrcset="assets/img/hero-chave-3q-560.webp 560w, assets/img/hero-chave-3q-1120.webp 1120w"
+      imagesizes="(min-width: 1280px) 386px, 30vw">
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/site.js" defer></script>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "Organization", "name": "Aspen Core",
+  "url": "https://seudominio.com.br/", "logo": "https://seudominio.com.br/icon-512.png",
+  "email": "contato@seudominio.com.br", "sameAs": ["https://www.instagram.com/aspencore_/"],
+  "address": { "@type": "PostalAddress", "addressCountry": "BR" } }
+</script>
+<!-- PENDENTE P06 e P08: e-mail e domínio no JSON-LD acima. PENDENTE P20: confirmar o endereço do Instagram. -->
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<div class="faixa-rascunho so-rascunho"><p>Rascunho. Os itens marcados como PENDENTE ainda precisam ser trocados antes de publicar.</p></div>
+
+<header class="topo modo-escuro">
+  <div class="topo__interno conteudo">
+    <a class="topo__marca" href="./">
+      <img src="assets/img/escudo-creme-64.webp" srcset="assets/img/escudo-creme-64.webp 64w, assets/img/escudo-creme-128.webp 128w" sizes="(min-width: 1024px) 40px, 28px" width="64" height="64" alt="" aria-hidden="true" decoding="async">
+      <span>Aspen Core</span>
+    </a>
+    <a class="topo__lista" href="#lista">Lista de espera</a>
+  </div>
+</header>
+
+<main id="conteudo">
+  <div class="noite modo-escuro">
+
+    <!-- 3.1 Hero -->
+    <section class="hero" aria-labelledby="hero-titulo">
+      <img class="marca-dagua" src="assets/img/marca-dagua-escudo-720.webp" width="720" height="726" alt="" aria-hidden="true" loading="lazy" fetchpriority="low" decoding="async" data-sobrepoe="ok">
+      <div class="conteudo hero__grade">
+        <h1 id="hero-titulo" class="hero__h1">A chave física que vai confirmar que é <span class="destaque">você</span></h1>
+        <p class="hero__sub">Essa é a Aspen Key. A ideia é que, ao entrar numa conta, além da senha, você encoste a chave no celular.</p>
+        <p class="hero__cta"><a class="botao botao--claro" href="#lista">Entrar na lista de espera</a></p>
+        <div class="aviso aviso--escuro">
+          <svg class="aviso__icone" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>
+          <div class="aviso__corpo">
+            <p class="aviso__titulo">Protótipo em desenvolvimento. O design final pode mudar.</p>
+            <p>Hoje ele ainda não se conecta a nenhum site, app ou conta.</p>
+            <p><a href="#prototipo">Ver o que o protótipo já faz</a></p>
+          </div>
+        </div>
+        <figure class="hero__figura">
+          <div class="hero__moldura">
+           <div class="hero__caixa">
+            <picture>
+              <source media="(min-width: 1024px)" srcset="assets/img/hero-chave-3q-560.webp 560w, assets/img/hero-chave-3q-1120.webp 1120w" sizes="(min-width: 1280px) 386px, 30vw" width="560" height="930">
+              <img src="assets/img/hero-chave-deitada-800.webp"
+                   srcset="assets/img/hero-chave-deitada-400.webp 400w, assets/img/hero-chave-deitada-800.webp 800w, assets/img/hero-chave-deitada-1200.webp 1200w"
+                   sizes="(min-width: 768px) 520px, 88vw" width="800" height="454"
+                   alt="Aspen Key, um bastão fino de metal preto escovado com conector USB-C numa ponta, uma faixa fina de luz ciano e um anel de chaveiro na outra ponta."
+                   fetchpriority="high" decoding="async">
+            </picture>
+            <span class="hero__brilho" aria-hidden="true"></span>
+           </div>
+          </div>
+          <figcaption>Imagem 3D feita a partir do protótipo.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3.2 Problema -->
+    <section id="problema" class="problema" aria-labelledby="problema-titulo">
+      <div class="conteudo problema__grade">
+        <h2 id="problema-titulo">Quem descobre a sua <span class="destaque">senha</span> pode entrar como se fosse você</h2>
+        <p class="problema__texto">Uma mensagem com link falso, uma página que imita a do banco, e a senha que você digita ali vai parar na mão de outra pessoa.</p>
+        <!-- PENDENTE P15: dado sobre golpes digitais no Brasil, com fonte citada. Sem número até ter fonte. -->
+        <figure class="problema__figura">
+          <img src="assets/img/problema-celular-bloqueio-640.webp"
+               srcset="assets/img/problema-celular-bloqueio-320.webp 320w, assets/img/problema-celular-bloqueio-640.webp 640w, assets/img/problema-celular-bloqueio-960.webp 960w"
+               sizes="(min-width: 1024px) 300px, 60vw" width="640" height="1218"
+               alt="Celular com uma notificação fictícia chamada Aviso de bloqueio, dizendo que a conta será suspensa hoje e trazendo o link site-do-banco.exemplo-falso."
+               loading="lazy" decoding="async">
+          <figcaption>Ilustração com um exemplo fictício de mensagem de golpe.</figcaption>
+        </figure>
+        <p class="problema__ponte">A Aspen Key está sendo criada para somar mais uma prova de que é você, além da senha. Uma coisa física, que fica no seu chaveiro.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- 3.3 A ideia em três passos -->
+  <section id="ideia" class="ideia modo-claro" aria-labelledby="ideia-titulo">
+    <div class="conteudo ideia__grade">
+      <div class="ideia__texto">
+        <h2 id="ideia-titulo"><span class="titulo-bloco">A ideia em três passos</span></h2>
+        <p class="ideia__intro">Esta é a visão do produto. Ainda não é assim que o protótipo funciona hoje.</p>
+        <ol class="passos">
+          <li>
+            <span class="passo__num" aria-hidden="true">1</span>
+            <div class="passo__corpo"><h3>Aproxime</h3><p>Na hora de entrar numa conta, depois da senha, você encosta a Aspen Key no celular.</p></div>
+          </li>
+          <li>
+            <span class="passo__num" aria-hidden="true">2</span>
+            <div class="passo__corpo"><h3>Confie</h3><p>A chave confirma que quem está entrando é você, e não alguém que só sabe a sua senha.</p></div>
+          </li>
+          <li>
+            <span class="passo__num" aria-hidden="true">3</span>
+            <div class="passo__corpo"><h3>Acesse</h3><p>Com a senha e a chave, você entra na sua conta.</p></div>
+          </li>
+        </ol>
+      </div>
+      <figure class="par">
+        <div class="par__imgs">
+          <img class="par__a" src="assets/img/ideia-celular-aguardando-560.webp"
+               srcset="assets/img/ideia-celular-aguardando-280.webp 280w, assets/img/ideia-celular-aguardando-560.webp 560w, assets/img/ideia-celular-aguardando-840.webp 840w"
+               sizes="(min-width: 1024px) 240px, 42vw" width="560" height="1066"
+               alt="Ilustração de um celular na tela de entrar numa conta, com o pedido Confirme com a Aspen Key e a instrução Aproxime a chave do celular."
+               loading="lazy" decoding="async">
+          <img class="par__b" src="assets/img/ideia-toque-frente-640.webp"
+               srcset="assets/img/ideia-toque-frente-320.webp 320w, assets/img/ideia-toque-frente-640.webp 640w, assets/img/ideia-toque-frente-960.webp 960w"
+               sizes="(min-width: 1024px) 320px, 46vw" width="640" height="877"
+               alt="Ilustração da Aspen Key encostada na lateral de um celular que mostra a mensagem Acesso confirmado."
+               loading="lazy" decoding="async">
+        </div>
+        <figcaption><span class="etiqueta-visao">Ilustração de como será, ainda não funciona assim</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 3.4 O protótipo hoje -->
+  <section id="prototipo" class="prototipo modo-claro" aria-labelledby="prototipo-titulo">
+    <div class="conteudo">
+      <h2 id="prototipo-titulo"><span class="titulo-bloco">O protótipo hoje</span></h2>
+      <p class="lead">Ele já existe como peça física e funciona em parte. Aqui está o que ele faz agora e o que ainda falta.</p>
+
+      <div class="prototipo__topo">
+        <div class="prototipo__fotos">
+          <!-- PENDENTE P01: foto real principal do protótipo. Trocar prototipo-referencia-*.webp por prototipo-foto-600/900/1152.webp (mesmo script de exportação), alt novo e legenda "Foto do protótipo." -->
+          <!-- PENDENTE P16: confirmar se a imagem de referência é foto real ou imagem gerada. A legenda atual não afirma que é foto. -->
+          <figure class="foto-principal" id="foto-principal">
+            <img src="assets/img/prototipo-referencia-900.webp"
+                 srcset="assets/img/prototipo-referencia-600.webp 600w, assets/img/prototipo-referencia-900.webp 900w, assets/img/prototipo-referencia-1152.webp 1152w"
+                 sizes="(min-width: 1024px) 420px, calc(100vw - 40px)" width="900" height="1200"
+                 alt="Imagem de referência do protótipo da Aspen Key, bastão preto com conector USB-C, faixa de luz ciano e anel de chaveiro, sobre fundo escuro."
+                 loading="lazy" decoding="async">
+            <figcaption>Imagem de referência do protótipo.</figcaption>
+          </figure>
+          <p class="slot slot--aviso so-rascunho" data-vazio><span class="slot__texto">PENDENTE: trocar pela foto real do protótipo (pendência P01).</span></p>
+          <div class="fotos-extras">
+            <figure class="slot slot--foto" id="foto-mao" data-vazio>
+              <!-- PENDENTE P02: foto do protótipo na mão. Trocar este conteúdo por <img> e remover data-vazio. -->
+              <p class="slot__texto">PENDENTE: foto do protótipo na mão, para mostrar o tamanho (pendência P02).</p>
+            </figure>
+            <figure class="slot slot--foto" id="foto-usb" data-vazio>
+              <!-- PENDENTE P03: foto do protótipo com o conector USB-C à mostra. Trocar este conteúdo por <img> e remover data-vazio. -->
+              <p class="slot__texto">PENDENTE: foto do protótipo com o conector USB-C à mostra (pendência P03).</p>
+            </figure>
+          </div>
+        </div>
+
+        <div class="prototipo__ficha">
+          <h3>Ficha do protótipo</h3>
+          <dl class="ficha">
+            <div><dt>Formato</dt><dd>Bastão de metal preto escovado</dd></div>
+            <div><dt>Largura</dt><dd>Cerca de 20 mm</dd></div>
+            <div><dt>Espessura</dt><dd>Cerca de 6,6 mm</dd></div>
+            <div><dt>Conector</dt><dd>USB-C</dd></div>
+            <div><dt>Luz</dt><dd>Faixa fina de LED ciano</dd></div>
+            <div><dt>Topo</dt><dd>Anel para chaveiro</dd></div>
+            <div><dt>Marca</dt><dd>Escudo da Aspen gravado de forma discreta</dd></div>
+            <div><dt>Chip</dt><dd>Chip de segurança criptográfico<!-- PENDENTE P09 (PENDENTE_MODELO_CHIP): confirmar ATECC608B; sem confirmação, fica sem o modelo --></dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="detalhes">
+        <figure class="detalhe">
+          <div class="detalhe__img"><img src="assets/img/detalhe-conector-480.webp"
+               srcset="assets/img/detalhe-conector-240.webp 240w, assets/img/detalhe-conector-480.webp 480w, assets/img/detalhe-conector-720.webp 720w"
+               sizes="(min-width: 1024px) 357px, 30vw" width="480" height="480"
+               alt="Close do conector USB-C metálico da Aspen Key." loading="lazy" decoding="async"></div>
+          <figcaption>Conector USB-C</figcaption>
+        </figure>
+        <figure class="detalhe">
+          <div class="detalhe__img"><img src="assets/img/detalhe-led-480.webp"
+               srcset="assets/img/detalhe-led-240.webp 240w, assets/img/detalhe-led-480.webp 480w, assets/img/detalhe-led-720.webp 720w"
+               sizes="(min-width: 1024px) 357px, 30vw" width="480" height="480"
+               alt="Close da faixa fina de luz ciano e do escudo da marca gravado no corpo preto." loading="lazy" decoding="async"></div>
+          <figcaption>Faixa de LED e escudo gravado</figcaption>
+        </figure>
+        <figure class="detalhe">
+          <div class="detalhe__img"><img src="assets/img/detalhe-anel-480.webp"
+               srcset="assets/img/detalhe-anel-240.webp 240w, assets/img/detalhe-anel-480.webp 480w, assets/img/detalhe-anel-720.webp 720w"
+               sizes="(min-width: 1024px) 357px, 30vw" width="480" height="480"
+               alt="Close da ponta da Aspen Key com o furo e o anel de chaveiro de aço escuro." loading="lazy" decoding="async"></div>
+          <figcaption>Anel no topo</figcaption>
+        </figure>
+      </div>
+      <p class="pequeno detalhes__legenda">Imagens 3D feitas a partir do protótipo.</p>
+
+      <div class="prototipo__linha">
+        <div class="estado-bloco estado-bloco--faz">
+          <h3>Hoje ele faz</h3>
+          <ul class="estado estado--faz">
+            <li>Calcula hash.</li>
+            <li>Executa criptografia assimétrica com um chip de segurança criptográfico.</li>
+            <li>Existe como peça física, com conector USB-C, faixa de LED e anel.</li>
+          </ul>
+        </div>
+        <div class="estado-bloco estado-bloco--nao">
+          <h3>Ainda não faz</h3>
+          <ul class="estado estado--nao">
+            <li>Não se conecta a nenhum site, app ou conta.</li>
+            <li>Não confirma o seu acesso quando encosta no celular. Isso ainda é a visão do produto.</li>
+            <li>Ainda não está à venda.</li>
+          </ul>
+        </div>
+        <p class="prototipo__tecnico"><a href="#faq-tecnico">O que é hash e criptografia assimétrica?</a></p>
+
+        <!-- PENDENTE P04: vídeo curto do protótipo calculando hash e fazendo criptografia assimétrica. Ao chegar, remover data-vazio e seguir a seção 7.3 do plano (arquivos em assets/video/). -->
+        <div class="video slot" id="video-prototipo" data-vazio>
+          <h3>O protótipo funcionando</h3>
+          <figure class="video__figura">
+            <div class="video__caixa"><p class="slot__texto">PENDENTE: vídeo curto do protótipo calculando hash e fazendo criptografia assimétrica (pendência P04).</p></div>
+            <figcaption>Vídeo do protótipo calculando hash e fazendo criptografia assimétrica.</figcaption>
+          </figure>
+          <h4>O que aparece no vídeo</h4>
+          <p class="video__transcricao"><!-- PENDENTE P05 -->PENDENTE: descrever em 2 a 4 frases, na ordem, o que aparece no vídeo (pendência P05).</p>
+        </div>
+      </div>
+
+      <div class="prototipo__fim">
+        <div class="aviso aviso--claro">
+          <svg class="aviso__icone" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>
+          <div class="aviso__corpo"><p class="aviso__titulo">Protótipo em desenvolvimento. O design final pode mudar.</p></div>
+        </div>
+        <p class="prototipo__cta"><a class="botao botao--petroleo" href="#lista">Entrar na lista de espera</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3.5 Lista de espera -->
+  <section id="lista" class="lista modo-claro" aria-labelledby="lista-titulo" data-tally-id="PENDENTE_TALLY_ID"><!-- PENDENTE P07: trocar PENDENTE_TALLY_ID pelo código do formulário no Tally (3 lugares: data-tally-id, data-tally-src e os dois href tally.so/r/) -->
+    <div class="conteudo lista__grade">
+      <div class="lista__texto">
+        <h2 id="lista-titulo"><span class="titulo-bloco">Entre na lista de espera</span></h2>
+        <p>Deixe seu e-mail e a gente avisa quando a Aspen Key for lançada. O seu e-mail serve só para esse aviso.</p>
+        <p class="pequeno lista__contato">Quer falar com a gente sobre investimento, imprensa ou outro assunto? Escreva para <a href="mailto:contato@seudominio.com.br">contato@seudominio.com.br</a>.<!-- PENDENTE P06: e-mail real de contato --></p>
+      </div>
+      <div class="lista__painel">
+        <!-- Rascunho: aparece só com data-modo="rascunho" e código PENDENTE (o site.js esconde se o código for real) -->
+        <div class="lista__rascunho so-rascunho">
+          <p class="lista__rascunho-titulo">PENDENTE: endereço do formulário do Tally</p>
+          <p>Henrique, crie o formulário no Tally e troque PENDENTE_TALLY_ID pelo código dele em index.html. Enquanto isso, o botão abaixo fica desativado.</p>
+          <label for="rascunho-email">Seu e-mail</label>
+          <input id="rascunho-email" type="email" placeholder="nome@exemplo.com" disabled>
+          <label class="lista__caixa"><input type="checkbox" disabled> <span>Quero receber um e-mail quando a Aspen Key for lançada.</span></label>
+          <button type="button" class="botao" aria-disabled="true" disabled>Entrar na lista de espera</button>
+        </div>
+        <!-- Formulário real -->
+        <div class="lista__tally">
+          <p class="lista__carregando" hidden>Carregando o formulário...</p>
+          <iframe data-tally-src="https://tally.so/embed/PENDENTE_TALLY_ID?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1"
+                  loading="lazy" width="100%" height="420" frameborder="0" marginheight="0" marginwidth="0"
+                  title="Formulário da lista de espera da Aspen Key"></iframe>
+          <p class="lista__erro" hidden>O formulário não carregou. Você pode abrir a lista de espera em outra aba.
+            <a class="lista__reserva" href="https://tally.so/r/PENDENTE_TALLY_ID" target="_blank" rel="noopener">Abrir a lista de espera em outra aba<span class="visualmente-oculto"> (abre em outra aba)</span></a></p>
+          <noscript><p>Para ver o formulário aqui, ative o JavaScript. Ou abra a lista de espera em outra aba.
+            <a href="https://tally.so/r/PENDENTE_TALLY_ID" target="_blank" rel="noopener">Abrir a lista de espera em outra aba<span class="visualmente-oculto"> (abre em outra aba)</span></a></p></noscript>
+        </div>
+      </div>
+      <p class="lista__consentimento pequeno">Ao entrar na lista, você aceita receber um e-mail da Aspen Core quando a Aspen Key for lançada. O formulário é do Tally, que guarda os dados na União Europeia. Você pode sair quando quiser. Leia a <a href="privacidade.html">Política de privacidade</a>.</p>
+      <p class="lista__status" role="status" data-confirmacao="Pronto, você está na lista de espera. Quando a Aspen Key for lançada, a gente te avisa por e-mail."></p>
+    </div>
+  </section>
+
+  <!-- 3.6 Perguntas frequentes -->
+  <section id="faq" class="faq modo-claro" aria-labelledby="faq-titulo">
+    <div class="conteudo">
+      <h2 id="faq-titulo"><span class="titulo-bloco">Perguntas frequentes</span></h2>
+      <div class="faq__lista">
+        <details id="faq-funciona"><summary>Já funciona?</summary>
+          <p>Em parte. O protótipo já calcula hash e executa criptografia assimétrica com um chip de segurança criptográfico. Ele ainda não se conecta a nenhum site, app ou conta.</p></details>
+        <details id="faq-senha"><summary>Substitui a minha senha?</summary>
+          <p>Não. A ideia é que a chave venha junto com a senha, como uma confirmação a mais de que é você.</p></details>
+        <details id="faq-data"><summary>Quando lança?</summary>
+          <p>Ainda não há data. Se você entrar na lista de espera, a gente avisa por e-mail quando houver.</p></details>
+        <details id="faq-preco"><summary>Quanto custa?</summary>
+          <p>Ainda não há preço.</p></details>
+        <details id="faq-tecnico"><summary>O que é hash e criptografia assimétrica?</summary>
+          <p>Hash é um cálculo que transforma qualquer dado num código curto, como uma impressão digital desse dado. Criptografia assimétrica usa um par de chaves, uma secreta e outra que pode ser mostrada, e permite provar quem é sem revelar a parte secreta. O protótipo já faz esses dois tipos de cálculo com um chip de segurança criptográfico.</p></details>
+        <details id="faq-design"><summary>Por que o design pode mudar?</summary>
+          <p>Porque é um protótipo. Formato, acabamento e detalhes ainda podem mudar até a versão final.</p></details>
+        <details id="faq-email"><summary>O que vocês fazem com o meu e-mail?</summary>
+          <p>Usamos só para avisar quando a Aspen Key for lançada. Você pode pedir para sair da lista quando quiser, pelo <a href="mailto:contato@seudominio.com.br">contato@seudominio.com.br</a>.<!-- PENDENTE P06: e-mail real de contato --> Os detalhes estão na <a href="privacidade.html">Política de privacidade</a>.</p></details>
+        <details id="faq-quem"><summary>Quem está por trás da Aspen Core?</summary>
+          <p>A Aspen Core é uma empresa brasileira em fase de protótipo, que está desenvolvendo a Aspen Key. No Instagram @aspencore_, a gente publica conteúdo sobre como se defender de golpes digitais.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape modo-petroleo">
+  <div class="conteudo rodape__grade">
+    <div class="rodape__marca">
+      <p class="rodape__nome"><img src="assets/img/escudo-creme-64.webp" srcset="assets/img/escudo-creme-64.webp 64w, assets/img/escudo-creme-128.webp 128w" sizes="40px" width="64" height="64" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Aspen Core</span></p>
+      <p>Aspen Core, empresa brasileira em fase de protótipo.</p>
+      <p class="rodape__lema"><span>Aproxime</span><span>Confie</span><span>Acesse</span></p>
+    </div>
+    <ul class="rodape__links">
+      <li><a href="https://www.instagram.com/aspencore_/" target="_blank" rel="noopener">@aspencore_ no Instagram<span class="visualmente-oculto"> (abre em outra aba)</span></a><!-- PENDENTE P20: confirmar o endereço do Instagram --></li>
+      <li><a href="mailto:contato@seudominio.com.br">contato@seudominio.com.br</a><!-- PENDENTE P06: e-mail real de contato --></li>
+      <li><a href="privacidade.html">Política de privacidade</a></li>
+    </ul>
+    <div class="rodape__fim">
+      <p class="rodape__aviso">Protótipo em desenvolvimento. O design final pode mudar.</p>
+      <p class="rodape__copy">© 2026 Aspen Core</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
