@@ -699,7 +699,7 @@ Filtro aplicado a cada frase: não afirma número de usuários, "usuários prote
 | `hero.aviso_titulo` | Protótipo em desenvolvimento. O design final pode mudar. |
 | `hero.aviso_texto` | Hoje ele ainda não se conecta a nenhum site, app ou conta. |
 | `hero.aviso_link` | Ver o que o protótipo já faz |
-| `hero.figura_legenda` | Imagem 3D feita a partir do protótipo. |
+| `hero.figura_legenda` | Ilustração da ideia final. O protótipo de hoje é diferente. |
 | `hero.figura_alt` | Aspen Key, um bastão fino de metal preto escovado com conector USB-C numa ponta, uma faixa fina de luz ciano e um anel de chaveiro na outra ponta. |
 
 ### Problema
@@ -972,7 +972,7 @@ Frases sem fato (vazias) são navegação, instrução ou pendência e não afir
 | `hero.aviso_titulo` | Protótipo em desenvolvimento. O design final pode mudar. | F7 |
 | `hero.aviso_texto` | Hoje ele ainda não se conecta a nenhum site, app ou conta. | F4 |
 | `hero.aviso_link` | Ver o que o protótipo já faz | F1, F2, F3 |
-| `hero.figura_legenda` | Imagem 3D feita a partir do protótipo. | F13 |
+| `hero.figura_legenda` | Ilustração da ideia final. O protótipo de hoje é diferente. | F13 |
 | `hero.figura_alt` | Aspen Key, um bastão fino de metal preto escovado com conector USB-C numa ponta, uma faixa fina de luz ciano e um anel de chaveiro na outra ponta. | F8 |
 | `problema.h2` | Quem descobre a sua senha pode entrar como se fosse você | G1 |
 | `problema.texto` | Uma mensagem com link falso, uma página que imita a do banco, e a senha que você digita ali vai parar na mão de outra pessoa. | G1 |

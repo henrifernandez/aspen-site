@@ -139,7 +139,7 @@ html[data-modo="publicado"] .slot[data-vazio] { display: none !important; }
 
 /* ============ Noite: hero e problema ============ */
 .noite { position: relative; overflow-x: clip; }
-.hero { position: relative; padding-top: var(--topo-h); padding-bottom: var(--e-8); }
+.hero { position: relative; overflow-x: clip; padding-top: var(--topo-h); padding-bottom: var(--e-8); }
 .marca-dagua { position: absolute; z-index: 0; width: 140vw; max-width: none; height: auto; left: 70%; top: 30%; transform: translate(-50%, -30%); opacity: 0.06; pointer-events: none; }
 .hero__grade { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr); }
 .hero__figura { order: -1; width: 88vw; margin-left: auto; margin-right: -12px; margin-bottom: var(--e-3); }
@@ -377,6 +377,33 @@ html[data-modo="rascunho"] .lista__rascunho > * + * { margin-top: 12px; }
 .erro404 img { width: 64px; height: auto; }
 .erro404 h1 { margin-top: var(--e-3); }
 .erro404 p { max-width: 40ch; }
+
+/* Visualizador 3D do hero. O modelo só carrega por demanda (site.js); sem ele, a imagem estática continua valendo. */
+.visualizador { position: absolute; inset: 0; border-radius: 12px; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+.visualizador[hidden] { display: none; }
+.visualizador canvas { position: absolute; display: block; pointer-events: none; outline: 0; }
+.visualizador:focus-visible { outline: 2px solid var(--foco); outline-offset: 4px; }
+.visualizador--arrastando { cursor: grabbing; }
+.visualizador__dica { position: absolute; left: 50%; bottom: 4px; transform: translateX(-50%); margin: 0; padding: 4px 12px; border-radius: 999px; background: rgba(6, 26, 35, 0.72); color: var(--texto); font-size: 0.75rem; line-height: 1.4; white-space: nowrap; pointer-events: none; transition: opacity 300ms ease; }
+.visualizador--usado .visualizador__dica { opacity: 0; }
+.hero__controles { display: flex; flex-direction: column; align-items: flex-end; gap: var(--e-2); margin: var(--e-2) 12px 0 0; }
+.hero__controles[hidden], .hero__girar[hidden], .vistas[hidden] { display: none; }
+.vistas { display: flex; gap: var(--e-2); }
+.hero__girar { min-height: 44px; padding: 0 16px; border-radius: 8px; border: 1px solid var(--borda); background: transparent; color: var(--texto); font-family: inherit; font-size: 0.875rem; font-weight: 700; cursor: pointer; transition: background-color 150ms ease; }
+.hero__girar:hover { background: rgba(239, 232, 214, 0.1); }
+.hero__girar:focus-visible { outline: 2px solid var(--foco); outline-offset: 2px; }
+.hero__girar--icone { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; padding: 0; }
+/* Modo 3D ligado: a moldura deixa de ser a faixa recortada do celular e vira um quadro para o modelo inteiro */
+.hero__figura--3d .hero__moldura { aspect-ratio: 1 / 1.05; max-height: 70vh; overflow: visible; -webkit-mask-image: none; mask-image: none; }
+.hero__figura--3d .hero__caixa { height: 100%; }
+.hero__figura--3d picture, .hero__figura--3d .hero__brilho { display: none; }
+@media (min-width: 1024px) {
+  .hero__figura--3d .hero__moldura { aspect-ratio: 560 / 930; max-height: none; }
+  .hero__controles { align-items: flex-start; }
+  .hero__controles { margin: var(--e-2) 0 0; }
+  .hero__girar { min-height: 38px; padding: 0 12px; }
+  .hero__girar--icone { min-width: 38px; padding: 0; }
+}
 
 /* Movimento (secao 6): so opacity e transform */
 @keyframes led-acende { 0% { opacity: 0; } 35% { opacity: .9; } 100% { opacity: .45; } }

@@ -23,6 +23,82 @@
     obsPassos.observe(lista);
   }
 
+  /* Visualizador 3D do hero: carrega three.js so quando precisa. Em tela grande e conexao livre abre sozinho;
+     nos demais casos, so pelo botao. Qualquer falha devolve a imagem estatica. */
+  (function () {
+    var figura = doc.querySelector('.hero__figura');
+    if (!figura) return;
+    var host = figura.querySelector('.visualizador');
+    var controles = figura.querySelector('.hero__controles');
+    var btnAtivar = figura.querySelector('[data-3d="ativar"]');
+    var painel = figura.querySelector('.vistas');
+    if (!host || !controles || !btnAtivar || !painel || typeof window.Promise === 'undefined') return;
+
+    var webgl = false;
+    try {
+      var teste = doc.createElement('canvas');
+      webgl = !!(window.WebGLRenderingContext && (teste.getContext('webgl2') || teste.getContext('webgl')));
+    } catch (e) {}
+    if (!webgl) return;
+
+    var conexao = navigator.connection || {};
+    var economia = !!conexao.saveData || /(^|-)2g$/.test(conexao.effectiveType || '');
+    var estado = 'parado'; /* parado, carregando, ativo */
+    var controle = null;
+
+    controles.hidden = false;
+
+    function desligar() {
+      if (controle) { try { controle.destruir(); } catch (e) {} controle = null; }
+      estado = 'parado';
+      figura.classList.remove('hero__figura--3d');
+      host.hidden = true;
+      painel.hidden = true;
+      btnAtivar.hidden = false;
+      btnAtivar.disabled = false;
+      btnAtivar.textContent = 'Girar em 3D';
+    }
+
+    function ativar(foco) {
+      if (estado !== 'parado') return;
+      estado = 'carregando';
+      btnAtivar.disabled = true;
+      btnAtivar.textContent = 'Carregando...';
+      import('./visualizador.js').then(function (mod) {
+        figura.classList.add('hero__figura--3d');
+        host.hidden = false;
+        controle = mod.iniciar(host, {
+          movimentoReduzido: reduzido,
+          aoFalhar: desligar
+        });
+        estado = 'ativo';
+        btnAtivar.hidden = true;
+        painel.hidden = false;
+        if (foco) host.focus({ preventScroll: true });
+      }).catch(function () {
+        desligar();
+        controles.hidden = true; /* sem WebGL utilizavel ou sem o modulo: fica a imagem */
+      });
+    }
+
+    btnAtivar.addEventListener('click', function () { ativar(true); });
+    /* Painel: voltar à vista inicial e zoom. Um único ouvinte para os botões. */
+    painel.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('button') : null;
+      if (!b || !controle) return;
+      if (b.hasAttribute('data-zoom')) controle.zoom(parseFloat(b.getAttribute('data-zoom')));
+      else if (b.getAttribute('data-3d') === 'reiniciar') controle.reiniciar();
+    });
+
+    var telaGrande = false;
+    try { telaGrande = window.matchMedia('(min-width: 1024px) and (pointer: fine)').matches; } catch (e) {}
+    if (telaGrande && !economia) {
+      var iniciar = function () { ativar(false); };
+      if ('requestIdleCallback' in window) requestIdleCallback(iniciar, { timeout: 2500 });
+      else setTimeout(iniciar, 1200);
+    }
+  })();
+
   /* FAQ: abrir o details indicado pela ancora e levar o foco ao summary */
   function abrirPorAncora() {
     var id = decodeURIComponent((location.hash || '').replace('#', ''));

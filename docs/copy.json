@@ -52,7 +52,7 @@
     "aviso_titulo": {"texto": "Protótipo em desenvolvimento. O design final pode mudar.", "fatos": ["F7"]},
     "aviso_texto": {"texto": "Hoje ele ainda não se conecta a nenhum site, app ou conta.", "fatos": ["F4"]},
     "aviso_link": {"texto": "Ver o que o protótipo já faz", "fatos": ["F1", "F2", "F3"]},
-    "figura_legenda": {"texto": "Imagem 3D feita a partir do protótipo.", "fatos": ["F13"]},
+    "figura_legenda": {"texto": "Ilustração da ideia final. O protótipo de hoje é diferente.", "fatos": ["F13"]},
     "figura_alt": {"texto": "Aspen Key, um bastão fino de metal preto escovado com conector USB-C numa ponta, uma faixa fina de luz ciano e um anel de chaveiro na outra ponta.", "fatos": ["F8"]}
   },
   "problema": {
