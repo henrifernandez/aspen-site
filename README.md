@@ -1,6 +1,6 @@
 # Site da Aspen Core (rascunho v1)
 
-Site estático da Aspen Key: página principal, política de privacidade e página 404. HTML, CSS e JavaScript simples, sem build, sem cookies e sem rastreadores. O plano completo está em `/mnt/user-data/outputs/aspen/site-plano/PLANO-SITE.md`.
+Site estático da Aspen Key: página principal, política de privacidade e página 404. HTML, CSS e JavaScript simples, sem build, sem cookies e sem rastreadores. O plano completo está em [`docs/PLANO-SITE.md`](docs/PLANO-SITE.md).
 
 ## Ver no computador
 
