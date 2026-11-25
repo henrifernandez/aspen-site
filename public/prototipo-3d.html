@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR" data-modo="publicado">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><!-- página embutida em index.html (#modelo3d); fica fora da busca de propósito -->
+<meta name="description" content="Modelo 3D interativo do protótipo de hoje da Aspen Key, com a animação de como a chave é usada para acessar um site.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="preload" href="assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+<title>Protótipo de hoje em 3D | Aspen Key</title>
+<style>
+  @font-face { font-family: "Poppins"; font-weight: 400; font-style: normal; font-display: swap; src: url("assets/fonts/poppins-400.woff2") format("woff2"); }
+  @font-face { font-family: "Poppins"; font-weight: 600; font-style: normal; font-display: swap; src: url("assets/fonts/poppins-600.woff2") format("woff2"); }
+  @font-face { font-family: "Poppins"; font-weight: 700; font-style: normal; font-display: swap; src: url("assets/fonts/poppins-700.woff2") format("woff2"); }
+  :root { --petroleo: #255B62; --petroleo-esc: #1C444A; --amarelo: #FBEFC9; --creme: #F6F6EA; --tile: #E6E7D7; --texto: #3A3A2E; --suave: #606054; --borda: #858579; --mesa: #d9d5ca; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--mesa); color: var(--texto); font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid var(--petroleo); outline-offset: 2px; }
+  .tela { position: fixed; inset: 0; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto auto; }
+  .tela--anim { grid-template-rows: auto minmax(0, 1fr) auto; }
+  .topo { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--creme); border-bottom: 1px solid var(--borda); }
+  .titulo { background: var(--petroleo); color: var(--amarelo); padding: 6px 12px; border-radius: 10px; font-weight: 600; font-size: 0.92rem; line-height: 1.3; }
+  .titulo small { display: block; font-weight: 400; opacity: 0.9; font-size: 0.74rem; }
+  /* duas abas, como um seletor único */
+  .modos { display: inline-flex; padding: 3px; border-radius: 999px; border: 1px solid var(--petroleo); background: var(--tile); }
+  .modo { min-height: 36px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--petroleo); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background-color 150ms ease, color 150ms ease; }
+  .modo:hover { background: rgba(37, 91, 98, 0.1); }
+  .modo[aria-pressed="true"] { background: var(--petroleo); color: var(--amarelo); }
+  .botao { min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--petroleo); background: transparent; color: var(--petroleo); font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+  .botao:hover { background: var(--tile); }
+
+  .palco { position: relative; min-height: 0; overflow: hidden; }
+  .visor { position: absolute; inset: 0; cursor: grab; outline-offset: -4px; }
+  .visor.arrastando { cursor: grabbing; }
+  .pinos { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  /* marcador pequeno: o número só identifica; o nome aparece ao passar o mouse e na peça escolhida */
+  .pino { position: absolute; left: 0; top: 0; width: 18px; height: 18px; padding: 0; margin: 0; border-radius: 50%; border: 1.5px solid var(--amarelo); background: var(--petroleo); color: var(--amarelo); font-size: 0.6rem; font-weight: 700; line-height: 1; cursor: pointer; pointer-events: auto; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4); transition: opacity 150ms ease, background-color 150ms ease; will-change: transform; }
+  .pino::before { content: ""; position: absolute; inset: -11px; border-radius: 50%; }
+  .pino__num { display: grid; place-items: center; width: 100%; height: 100%; }
+  .pino__nome { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); padding: 3px 8px; border-radius: 999px; background: rgba(246, 246, 234, 0.96); color: var(--texto); font-size: 0.72rem; font-weight: 600; white-space: nowrap; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25); opacity: 0; pointer-events: none; transition: opacity 150ms ease; }
+  .pino:hover .pino__nome, .pino--ativo .pino__nome { opacity: 1; }
+  .pino:hover { background: var(--petroleo-esc); z-index: 2; }
+  .pino--oculto { opacity: 0.3; }
+  .pino--ativo { background: var(--amarelo); color: var(--petroleo); border-color: var(--petroleo); opacity: 1; z-index: 3; }
+  .pino[hidden] { display: none; }
+  .dica-visor { position: absolute; left: 50%; top: 12px; transform: translateX(-50%); margin: 0; padding: 6px 14px; border-radius: 999px; background: rgba(246, 246, 234, 0.92); color: var(--suave); font-size: 0.75rem; font-weight: 600; white-space: nowrap; box-shadow: 0 2px 10px rgba(6, 26, 35, 0.18); pointer-events: none; transition: opacity 500ms ease; }
+  .dica-visor--some { opacity: 0; }
+
+  .legenda { position: absolute; left: 12px; right: 12px; bottom: 12px; max-width: 40rem; padding: 12px 14px; border-radius: 12px; background: rgba(251, 239, 201, 0.96); box-shadow: 0 6px 24px rgba(6, 26, 35, 0.25); pointer-events: none; }
+  .legenda strong { display: block; font-size: 1rem; margin-bottom: 2px; }
+  .legenda span { font-size: 0.9rem; line-height: 1.5; }
+  .legenda em { display: block; margin-top: 6px; font-size: 0.78rem; font-style: normal; font-weight: 600; color: #7a4a00; }
+  .palco--anim .legenda { bottom: 74px; }
+  .grande-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); min-height: 56px; padding: 0 28px; border-radius: 999px; border: 0; background: var(--petroleo); color: var(--amarelo); font-size: 1.05rem; font-weight: 700; box-shadow: 0 8px 30px rgba(6, 26, 35, 0.35); cursor: pointer; }
+  .grande-play:hover { background: var(--petroleo-esc); }
+  [hidden] { display: none !important; }
+
+  /* reprodutor da animação: um botão, uma linha do tempo e o tempo */
+  .player { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; align-items: center; gap: 12px; padding: 6px 16px 6px 6px; border-radius: 999px; background: rgba(246, 246, 234, 0.96); box-shadow: 0 6px 24px rgba(6, 26, 35, 0.25); }
+  .player__play { flex: none; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: var(--petroleo); color: var(--amarelo); font-size: 0.95rem; line-height: 1; cursor: pointer; }
+  .player__play:hover { background: var(--petroleo-esc); }
+  .linha { position: relative; flex: 1; display: flex; align-items: center; min-width: 0; height: 28px; }
+  .linha input { position: relative; z-index: 1; width: 100%; margin: 0; background: transparent; accent-color: var(--petroleo); cursor: pointer; }
+  .marcas { position: absolute; inset: 0; pointer-events: none; }
+  .marcas span { position: absolute; top: 50%; width: 2px; height: 12px; margin-left: -1px; transform: translateY(-50%); border-radius: 1px; background: rgba(37, 91, 98, 0.45); }
+  .player__tempo { flex: none; min-width: 5.4em; text-align: right; font-size: 0.78rem; font-variant-numeric: tabular-nums; color: var(--suave); }
+
+  .painel { padding: 12px 14px 14px; background: var(--creme); border-top: 1px solid var(--borda); overflow: auto; max-height: 46vh; }
+  .rotulo { margin: 0 0 8px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--suave); }
+  .lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 6px; }
+  .chip { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 40px; padding: 4px 10px 4px 6px; border-radius: 8px; border: 1px solid var(--borda); background: transparent; font-size: 0.85rem; line-height: 1.25; text-align: left; cursor: pointer; }
+  .chip:hover { background: var(--tile); }
+  .chip__num { flex: none; display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--petroleo); color: var(--amarelo); font-size: 0.75rem; font-weight: 700; }
+  .chip__num--sem { background: transparent; color: var(--suave); border: 1px dashed var(--borda); }
+  .chip[aria-pressed="true"] { background: var(--petroleo); color: var(--amarelo); border-color: var(--petroleo); }
+  .chip[aria-pressed="true"] .chip__num { background: var(--amarelo); color: var(--petroleo); }
+  .cartao { position: relative; margin-top: 10px; padding: 12px 14px; border-radius: 12px; background: var(--amarelo); }
+  .cartao--vazio { background: var(--tile); }
+  .cartao h3 { margin: 0 0 4px; padding-right: 30px; font-size: 1rem; line-height: 1.35; }
+  .cartao p { margin: 0; font-size: 0.9rem; line-height: 1.55; }
+  .cartao .cartao__funcao { margin-bottom: 6px; font-size: 0.82rem; font-weight: 600; color: var(--petroleo); }
+  .cartao__dados { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; margin: 10px 0 0; padding: 8px 10px; border-radius: 8px; background: rgba(255, 255, 255, 0.55); font-size: 0.8rem; line-height: 1.4; }
+  .cartao__dados dt { font-weight: 700; color: var(--suave); }
+  .cartao__dados dd { margin: 0; }
+  .cartao .cartao__fluxo { margin-top: 8px; font-size: 0.82rem; }
+  .cartao .pend { margin-top: 8px; padding: 6px 8px; border: 1px dashed #b08a2a; border-radius: 8px; font-size: 0.78rem; font-weight: 600; color: #6b4a00; }
+  .cartao__fechar { position: absolute; right: 8px; top: 8px; width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; background: rgba(37, 91, 98, 0.12); color: var(--petroleo); font-size: 1.1rem; line-height: 1; cursor: pointer; }
+  .cartao__fechar:hover { background: rgba(37, 91, 98, 0.22); }
+  .nota { margin: 0; padding: 6px 14px 8px; font-size: 0.72rem; line-height: 1.4; color: var(--suave); background: var(--creme); }
+  .erro { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; }
+
+  @media (min-width: 900px) {
+    .tela { grid-template-columns: minmax(0, 1fr) 370px; grid-template-rows: auto minmax(0, 1fr) auto; }
+    .tela--anim { grid-template-columns: minmax(0, 1fr); }
+    .topo { grid-column: 1 / -1; }
+    .palco { grid-column: 1; grid-row: 2; }
+    .painel { grid-column: 2; grid-row: 2; max-height: none; border-top: 0; border-left: 1px solid var(--borda); }
+    .nota { grid-column: 1 / -1; }
+    .lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 899px) {
+    .pino { width: 16px; height: 16px; font-size: 0.55rem; }
+    .pino__nome { font-size: 0.66rem; }
+    .legenda { left: 8px; right: 8px; bottom: 8px; padding: 10px 12px; }
+    .legenda span { font-size: 0.82rem; line-height: 1.4; }
+    .palco--anim .legenda { bottom: 68px; }
+    .player { left: 8px; right: 8px; bottom: 8px; gap: 8px; }
+    .player__tempo { min-width: 4.6em; }
+    .titulo small { display: none; }
+    .nota { padding: 4px 14px 6px; font-size: 0.66rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { .dica-visor, .pino, .modo { transition: none; } }
+</style>
+</head>
+<body>
+<div class="tela" id="tela">
+  <header class="topo">
+    <div class="titulo">Protótipo de hoje em 3D<small>Modelo ilustrativo, construído a partir das fotos do protótipo</small></div>
+    <div class="modos" role="group" aria-label="Modo de visualização">
+      <button type="button" class="modo" data-modo="explorar" aria-pressed="true">Peças</button>
+      <button type="button" class="modo" data-modo="anim" aria-pressed="false">Como funciona</button>
+    </div>
+  </header>
+
+  <main class="palco" id="palco">
+    <div class="visor" id="visor" tabindex="0" role="group" aria-label="Modelo 3D do protótipo de hoje. Arraste para girar, use a roda do mouse para aproximar, ou as setas do teclado. Para conhecer cada peça, use a lista de peças."></div>
+    <div class="pinos" id="pinos" aria-hidden="true"></div>
+    <p class="dica-visor" id="dica" aria-hidden="true">Arraste para girar · Role para aproximar · Duplo clique para recentralizar</p>
+    <div class="legenda" id="legenda" hidden role="status" aria-live="polite"><strong id="leg-titulo"></strong><span id="leg-texto"></span><em id="leg-pend" hidden></em></div>
+    <button type="button" class="grande-play" id="grande-play" hidden>▶ Reproduzir</button>
+    <div class="player" id="player" hidden>
+      <button type="button" class="player__play" id="btn-play" aria-label="Reproduzir">▶</button>
+      <div class="linha">
+        <div class="marcas" id="marcas" aria-hidden="true"></div>
+        <input type="range" id="tempo" min="0" max="1000" value="0" aria-label="Posição da animação">
+      </div>
+      <span class="player__tempo" id="tempo-txt">0:00 / 0:00</span>
+    </div>
+  </main>
+
+  <aside class="painel" id="painel-explorar" aria-label="Peças do protótipo">
+    <h2 class="rotulo">Peças</h2>
+    <ul class="lista" id="lista"></ul>
+    <div class="cartao cartao--vazio" id="cartao" role="region" aria-live="polite" aria-label="Descrição da peça"></div>
+  </aside>
+
+  <p class="nota" id="nota-pecas">Modelo ilustrativo, construído por código a partir das fotos do protótipo. As medidas das peças seguem padrões de mercado e a posição dos fios é aproximada. Firmware experimental de laboratório, sem certificação FIDO.</p>
+  <p class="nota" id="nota-anim" hidden>Animação ilustrativa do protótipo: PIN, toque, assinatura no chip de segurança e verificação no navegador. Sem certificação FIDO e ainda não utilizado em contas reais.</p>
+</div>
+<noscript><p class="erro">Este modelo 3D precisa de JavaScript.</p></noscript>
+<script type="module" src="assets/js/modelo3d/app.js"></script>
+</body>
+</html>

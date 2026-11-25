@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive"><!-- área interna da equipe; fica fora da busca de propósito -->
+<meta name="theme-color" content="#0A2935">
+<title>Painel da lista de espera | Aspen Core</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="preload" href="assets/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/admin.css">
+<script src="assets/js/admin.js" defer></script>
+</head>
+<body>
+<header class="topo">
+  <div class="topo__interno">
+    <p class="topo__marca">
+      <img src="assets/img/escudo-creme-64.webp" srcset="assets/img/escudo-creme-64.webp 64w, assets/img/escudo-creme-128.webp 128w" sizes="32px" width="64" height="64" alt="" aria-hidden="true">
+      <span>Aspen Core</span><small>Painel interno</small>
+    </p>
+    <div class="topo__acoes" id="topo-acoes" hidden>
+      <span class="topo__ola" id="ola"></span>
+      <button type="button" class="botao botao--fantasma" id="btn-sair">Sair</button>
+    </div>
+  </div>
+</header>
+
+<main class="miolo">
+
+  <!-- 1. Entrada com o código pessoal -->
+  <section class="entrada" id="entrada" aria-labelledby="entrada-titulo">
+    <div class="cartao entrada__cartao">
+      <p class="selo">Área reservada à equipe</p>
+      <h1 id="entrada-titulo">Lista de espera da Aspen Key</h1>
+      <p class="entrada__texto">Aqui você acompanha quem pediu para ser avisado quando a Aspen Key for lançada. Para entrar, digite o seu código pessoal.</p>
+      <form id="form-entrada" novalidate>
+        <label for="codigo">Código pessoal</label>
+        <input id="codigo" name="codigo" type="password" autocomplete="current-password" autocapitalize="none" spellcheck="false" required placeholder="Cole ou digite o seu código">
+        <p class="erro" id="erro-entrada" role="alert" hidden></p>
+        <button type="submit" class="botao botao--cheio" id="btn-entrar">Entrar</button>
+      </form>
+      <details class="ajuda">
+        <summary>Não tenho um código</summary>
+        <p>Cada pessoa da equipe tem o seu código, que não deve ser compartilhado. Peça o seu a quem administra o site. Se um código for perdido ou exposto, ele é trocado sem afetar os dos demais.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- 2. Painel -->
+  <div class="painel" id="painel" hidden>
+    <div class="painel__cabeca">
+      <div>
+        <h1>Lista de espera</h1>
+        <p class="painel__sub">Pessoas que pediram para ser avisadas do lançamento da Aspen Key.</p>
+      </div>
+      <div class="painel__atualiza">
+        <button type="button" class="botao" id="btn-atualizar">Atualizar</button>
+        <span class="pequeno" id="atualizado"></span>
+      </div>
+    </div>
+
+    <p class="aviso aviso--cortado" id="aviso-cortado" hidden>A lista é grande e o painel mostra só as primeiras 5.000 inscrições. Os números acima refletem apenas essas.</p>
+
+    <section class="numeros" aria-label="Resumo">
+      <div class="cartao numero numero--principal"><p class="numero__rotulo">Total na lista</p><p class="numero__valor" id="n-total">0</p><p class="numero__nota">E-mails ativos agora</p></div>
+      <div class="cartao numero"><p class="numero__rotulo">Hoje</p><p class="numero__valor" id="n-hoje">0</p><p class="numero__nota">Novas inscrições</p></div>
+      <div class="cartao numero"><p class="numero__rotulo">Últimos 7 dias</p><p class="numero__valor" id="n-sete">0</p><p class="numero__nota">Novas inscrições</p></div>
+      <div class="cartao numero"><p class="numero__rotulo">Últimos 30 dias</p><p class="numero__valor" id="n-trinta">0</p><p class="numero__nota">Novas inscrições</p></div>
+    </section>
+
+    <section class="cartao grafico" aria-labelledby="grafico-titulo">
+      <h2 id="grafico-titulo">Inscrições por dia</h2>
+      <p class="pequeno">Últimos 14 dias. O dia de hoje aparece em destaque.</p>
+      <div class="grafico__barras" id="grafico" role="img" aria-label="Gráfico de barras com as inscrições dos últimos 14 dias"></div>
+    </section>
+
+    <section class="cartao tabela" aria-labelledby="tabela-titulo">
+      <div class="tabela__topo">
+        <h2 id="tabela-titulo">Inscritos <span class="contagem" id="contagem"></span></h2>
+        <div class="tabela__ferramentas">
+          <label class="visualmente-oculto" for="busca">Buscar um e-mail</label>
+          <input id="busca" type="search" placeholder="Buscar um e-mail" autocomplete="off" spellcheck="false">
+          <button type="button" class="botao" id="btn-copiar">Copiar e-mails</button>
+          <button type="button" class="botao" id="btn-csv">Baixar CSV</button>
+        </div>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <div class="tabela__rolagem">
+        <table>
+          <thead><tr><th scope="col">E-mail</th><th scope="col">Inscrito em</th><th scope="col">Sai da lista em</th><th scope="col"><span class="visualmente-oculto">Ações</span></th></tr></thead>
+          <tbody id="linhas"></tbody>
+        </table>
+      </div>
+      <p class="vazio" id="vazio" hidden></p>
+    </section>
+
+    <section class="guia" aria-labelledby="guia-titulo">
+      <h2 id="guia-titulo">Como esta página funciona</h2>
+      <div class="guia__grade">
+        <article class="cartao guia__item">
+          <span class="guia__num" aria-hidden="true">1</span>
+          <h3>De onde vêm os e-mails</h3>
+          <p>Quando alguém preenche o formulário do site e marca as três confirmações, o e-mail entra aqui sozinho. Não é preciso fazer nada. Use "Atualizar" para ver as novidades.</p>
+        </article>
+        <article class="cartao guia__item">
+          <span class="guia__num" aria-hidden="true">2</span>
+          <h3>O que fica guardado</h3>
+          <p>Somente o e-mail, a data da inscrição e a versão da política aceita. Não guardamos nome, telefone nem endereço IP. Cada registro some sozinho 24 meses depois da inscrição, e a coluna "Sai da lista em" mostra esse dia.</p>
+        </article>
+        <article class="cartao guia__item">
+          <span class="guia__num" aria-hidden="true">3</span>
+          <h3>Cuidados com a lista</h3>
+          <p>São dados pessoais protegidos pela LGPD. Use a lista só para avisar do lançamento, não a compartilhe e não envie por aplicativos de mensagem. Se alguém pedir para sair, use "Apagar" na linha da pessoa. O apagamento é definitivo.</p>
+        </article>
+        <article class="cartao guia__item">
+          <span class="guia__num" aria-hidden="true">4</span>
+          <h3>Copiar e baixar</h3>
+          <p>"Copiar e-mails" coloca os endereços da busca atual na área de transferência, um por linha. "Baixar CSV" gera uma planilha com e-mail e data, que abre no Excel e no Google Planilhas.</p>
+        </article>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="rodape">
+  <p>Área interna da Aspen Core. Não indexada em buscadores. <a href="privacidade.html">Política de privacidade</a></p>
+</footer>
+
+<dialog class="confirma" id="confirma" aria-labelledby="confirma-titulo">
+  <form method="dialog">
+    <h2 id="confirma-titulo">Apagar este e-mail?</h2>
+    <p class="confirma__email" id="confirma-email"></p>
+    <p>A pessoa sai da lista de espera e deixa de receber o aviso de lançamento. Essa ação não pode ser desfeita.</p>
+    <div class="confirma__botoes">
+      <button type="submit" class="botao" value="cancelar" id="confirma-cancelar">Cancelar</button>
+      <button type="button" class="botao botao--perigo" id="confirma-apagar">Apagar definitivamente</button>
+    </div>
+  </form>
+</dialog>
+<noscript><p class="erro" style="padding:24px">Este painel precisa de JavaScript.</p></noscript>
+</body>
+</html>

@@ -1,4 +1,4 @@
-/* Aspen Core, site v1. Sem dependencias. Liga: classe js, revelacao dos passos, FAQ por ancora e formulario do Tally. */
+/* Aspen Core, site v1. Sem dependencias. Liga: classe js, revelacao dos passos, FAQ por ancora e lista de espera (formulario proprio). */
 (function () {
   'use strict';
   var doc = document;
@@ -117,88 +117,94 @@
   }
   window.addEventListener('hashchange', abrirPorAncora);
 
-  /* Formulario do Tally */
+  /* Lista de espera: formulário próprio, envia para /api/lista (functions/api/lista.js) */
   var secao = doc.getElementById('lista');
   if (!secao) return;
-  var codigo = secao.getAttribute('data-tally-id') || '';
-  var painelRascunho = secao.querySelector('.lista__rascunho');
-  var blocoTally = secao.querySelector('.lista__tally');
-  var iframe = secao.querySelector('iframe[data-tally-src]');
-  var carregando = secao.querySelector('.lista__carregando');
-  var erro = secao.querySelector('.lista__erro');
-  var status = secao.querySelector('.lista__status');
-  var reserva = secao.querySelector('.lista__reserva');
+  var form = doc.getElementById('lista-form');
+  var pronto = doc.getElementById('lista-pronto');
+  var status = doc.getElementById('lista-status');
+  if (!form) return;
+  var campoEmail = form.elements.email;
+  var erroEmail = doc.getElementById('lista-erro-email');
+  var erroAceites = doc.getElementById('lista-erro-aceites');
+  var botao = form.querySelector('button[type="submit"]');
+  var rotuloBotao = botao.textContent;
+  var caixas = ['aviso', 'maior', 'transferencia', 'privacidade'].map(function (n) { return form.elements[n]; });
+  var MSG_OK = 'Cadastro confirmado. Você está na lista de espera.';
 
-  if (!codigo || codigo.indexOf('PENDENTE') === 0) {
-    if (blocoTally) blocoTally.hidden = true;
-    return;
+  function limparErros() {
+    [erroEmail, erroAceites].forEach(function (e) { e.hidden = true; e.textContent = ''; });
+    campoEmail.removeAttribute('aria-invalid');
+    status.textContent = ''; status.classList.remove('lista__status--erro');
   }
-  if (painelRascunho) painelRascunho.hidden = true;
-
-  /* Link de reserva: so utm_source, utm_medium e utm_content, limpos */
-  function limpar(v) {
-    v = String(v || '').slice(0, 100);
-    return /^[A-Za-z0-9_.-]+$/.test(v) ? encodeURIComponent(v) : '';
+  function erroNo(el, campo, texto) {
+    el.textContent = texto; el.hidden = false;
+    if (campo) campo.setAttribute('aria-invalid', 'true');
   }
-  if (reserva) {
-    try {
-      var p = new URLSearchParams(location.search);
-      var extra = [];
-      ['utm_source', 'utm_medium', 'utm_content'].forEach(function (k) {
-        var v = limpar(p.get(k));
-        if (v) extra.push(k + '=' + v);
-      });
-      if (extra.length) reserva.href = reserva.href + (reserva.href.indexOf('?') === -1 ? '?' : '&') + extra.join('&');
-    } catch (e) {}
+  function mostrarPronto() {
+    form.hidden = true; pronto.hidden = false; status.textContent = '';
+    try { pronto.focus({ preventScroll: true }); } catch (e) { pronto.focus(); }
+  }
+  function falhou(texto) {
+    status.textContent = texto; status.classList.add('lista__status--erro');
   }
 
-  var prazo = null;
-  function mostrarErro() {
-    blocoTally.classList.add('falhou');
-    if (carregando) carregando.hidden = true;
-    if (erro) erro.hidden = false;
-  }
-  function pronto() {
-    if (prazo) { clearTimeout(prazo); prazo = null; }
-    blocoTally.classList.remove('falhou');
-    if (carregando) carregando.hidden = true;
-    if (erro) erro.hidden = true;
-  }
-
-  window.addEventListener('message', function (e) {
-    if (e.origin !== 'https://tally.so') return;
-    var dados = e.data;
-    if (typeof dados !== 'string' || dados.indexOf('Tally.') === -1) return;
-    if (dados.indexOf('Tally.FormLoaded') !== -1) pronto();
-    if (dados.indexOf('Tally.FormSubmitted') !== -1 && status) {
-      status.textContent = status.getAttribute('data-confirmacao') || '';
+  function validar() {
+    limparErros();
+    var ok = true, primeiro = null;
+    var email = campoEmail.value.trim();
+    if (!email) { erroNo(erroEmail, campoEmail, 'Digite o seu e-mail.'); ok = false; primeiro = campoEmail; }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { erroNo(erroEmail, campoEmail, 'Confira o e-mail: ele precisa ter o formato nome@exemplo.com.'); ok = false; primeiro = campoEmail; }
+    if (!caixas.every(function (c) { return c.checked; })) {
+      erroNo(erroAceites, null, 'Marque as quatro confirmações para entrar na lista.'); ok = false;
+      if (!primeiro) primeiro = caixas.filter(function (c) { return !c.checked; })[0];
     }
+    if (primeiro) primeiro.focus();
+    return ok;
+  }
+
+  form.addEventListener('submit', function (ev) {
+    if (!window.fetch) return; /* sem fetch: o navegador envia o formulário do jeito antigo */
+    ev.preventDefault();
+    if (!validar()) return;
+    botao.disabled = true; botao.textContent = 'Enviando...';
+    var controle = window.AbortController ? new AbortController() : null;
+    var prazo = setTimeout(function () { if (controle) controle.abort(); }, 15000);
+    var dados = {
+      email: campoEmail.value.trim(), aviso: caixas[0].checked, maior: caixas[1].checked, transferencia: caixas[2].checked, privacidade: caixas[3].checked,
+      site: form.elements.site.value
+    };
+    fetch(form.getAttribute('action'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(dados),
+      signal: controle ? controle.signal : undefined
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok && j.ok, j: j }; });
+    }).then(function (res) {
+      if (res.ok) { mostrarPronto(); return; }
+      if (res.j.campo === 'email') { erroNo(erroEmail, campoEmail, res.j.erro); campoEmail.focus(); }
+      else if (res.j.campo === 'aceites') erroNo(erroAceites, null, res.j.erro);
+      else falhou(res.j.erro || 'Não deu para registrar agora. Tente de novo em instantes ou escreva para aspencorp0@gmail.com.');
+    }).catch(function () {
+      falhou('Sem conexão com o servidor. Confira a internet e tente de novo, ou escreva para aspencorp0@gmail.com.');
+    }).then(function () {
+      clearTimeout(prazo); botao.disabled = false; botao.textContent = rotuloBotao;
+    });
   });
 
-  var carregou = false;
-  function carregarTally() {
-    if (carregou || !iframe) return;
-    carregou = true;
-    if (carregando) carregando.hidden = false;
-    var s = doc.createElement('script');
-    s.src = 'https://tally.so/widgets/embed.js';
-    s.async = true;
-    s.onload = function () {
-      if (window.Tally && window.Tally.loadEmbeds) window.Tally.loadEmbeds();
-      else iframe.setAttribute('src', iframe.getAttribute('data-tally-src'));
-    };
-    s.onerror = mostrarErro;
-    doc.body.appendChild(s);
-    prazo = setTimeout(mostrarErro, 10000);
-  }
-  if ('IntersectionObserver' in window) {
-    var obs = new IntersectionObserver(function (entradas, o) {
-      entradas.forEach(function (en) {
-        if (en.isIntersecting) { carregarTally(); o.disconnect(); }
-      });
-    }, { rootMargin: '800px 0px' });
-    obs.observe(secao);
-  } else {
-    carregarTally();
-  }
+  [campoEmail].concat(caixas).forEach(function (c) {
+    c.addEventListener('input', function () {
+      if (c === campoEmail) { erroEmail.hidden = true; campoEmail.removeAttribute('aria-invalid'); }
+      else erroAceites.hidden = true;
+      status.textContent = ''; status.classList.remove('lista__status--erro');
+    });
+  });
+
+  /* caminho sem JavaScript: o servidor volta para /?lista=ok ou /?lista=erro */
+  try {
+    var resultado = new URLSearchParams(location.search).get('lista');
+    if (resultado === 'ok') mostrarPronto();
+    else if (resultado === 'erro') falhou('Não deu para registrar. Confira o e-mail e as três confirmações, ou escreva para aspencorp0@gmail.com.');
+  } catch (e) {}
 })();
