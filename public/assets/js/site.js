@@ -205,6 +205,6 @@
   try {
     var resultado = new URLSearchParams(location.search).get('lista');
     if (resultado === 'ok') mostrarPronto();
-    else if (resultado === 'erro') falhou('Não deu para registrar. Confira o e-mail e as três confirmações, ou escreva para aspencorp0@gmail.com.');
+    else if (resultado === 'erro') falhou('Não deu para registrar. Confira o e-mail e as quatro confirmações, ou escreva para aspencorp0@gmail.com.');
   } catch (e) {}
 })();
