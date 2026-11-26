@@ -29,6 +29,9 @@
   .modo[aria-pressed="true"] { background: var(--petroleo); color: var(--amarelo); }
   .botao { min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--petroleo); background: transparent; color: var(--petroleo); font-size: 0.85rem; font-weight: 600; cursor: pointer; }
   .botao:hover { background: var(--tile); }
+  /* vista explodida: separa e junta as peças */
+  .explodir { position: absolute; left: 12px; bottom: 12px; min-height: 44px; padding: 0 18px; background: var(--creme); box-shadow: 0 4px 16px rgba(6, 26, 35, 0.22); }
+  .explodir[aria-pressed="true"] { background: var(--petroleo); color: var(--amarelo); }
 
   .palco { position: relative; min-height: 0; overflow: hidden; }
   .visor { position: absolute; inset: 0; cursor: grab; outline-offset: -4px; }
@@ -127,6 +130,7 @@
     <div class="visor" id="visor" tabindex="0" role="group" aria-label="Modelo 3D do protótipo de hoje. Arraste para girar, use a roda do mouse para aproximar, ou as setas do teclado. Para conhecer cada peça, use a lista de peças."></div>
     <div class="pinos" id="pinos" aria-hidden="true"></div>
     <p class="dica-visor" id="dica" aria-hidden="true">Arraste para girar · Role para aproximar · Duplo clique para recentralizar</p>
+    <button type="button" class="botao explodir" id="btn-explodir" aria-pressed="false">Separar peças</button>
     <div class="legenda" id="legenda" hidden role="status" aria-live="polite"><strong id="leg-titulo"></strong><span id="leg-texto"></span><em id="leg-pend" hidden></em></div>
     <button type="button" class="grande-play" id="grande-play" hidden>▶ Reproduzir</button>
     <div class="player" id="player" hidden>

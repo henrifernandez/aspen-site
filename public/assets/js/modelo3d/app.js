@@ -105,6 +105,19 @@ host.addEventListener('pointerdown', esconderDica, true);
 host.addEventListener('wheel', esconderDica, { passive: true });
 setTimeout(esconderDica, 9000);
 
+/* ---------- vista explodida: separa e junta as peças (os fios somem enquanto estão separadas) ---------- */
+var btnExplodir = $('btn-explodir');
+function marcarExplodir(ligado) {
+  btnExplodir.setAttribute('aria-pressed', ligado ? 'true' : 'false');
+  btnExplodir.textContent = ligado ? 'Juntar peças' : 'Separar peças';
+}
+btnExplodir.addEventListener('click', function () {
+  var ligar = !visor.explodido();
+  if (sel) escolher(sel, false);
+  esconderDica();
+  visor.explodir(ligar); marcarExplodir(ligar);
+});
+
 /* ---------- pontos acompanham o modelo ---------- */
 var caixa = new THREE.Box3(), centro = new THREE.Vector3(), ultimaOclusao = 0;
 function atualizarPinos() {
@@ -195,7 +208,7 @@ function trocarModo(novo) {
         });
       }
       if (sel) escolher(sel, false);
-      visor.explodir(false);
+      visor.explodir(false); marcarExplodir(false); btnExplodir.hidden = true;
       modo = 'anim'; carregando = false;
       pinosEl.hidden = true; dica.hidden = true; $('painel-explorar').hidden = true; $('nota-pecas').hidden = true; $('nota-anim').hidden = false;
       tela.classList.add('tela--anim'); palco.classList.add('palco--anim');
@@ -207,7 +220,7 @@ function trocarModo(novo) {
   } else {
     parar(); if (anim) anim.desativar();
     modo = 'explorar';
-    pinosEl.hidden = false; dica.hidden = dicaVista; $('painel-explorar').hidden = false; $('nota-pecas').hidden = false; $('nota-anim').hidden = true;
+    btnExplodir.hidden = false; pinosEl.hidden = false; dica.hidden = dicaVista; $('painel-explorar').hidden = false; $('nota-pecas').hidden = false; $('nota-anim').hidden = true;
     tela.classList.remove('tela--anim'); palco.classList.remove('palco--anim');
     legenda.hidden = true; player.hidden = true; grande.hidden = true;
     visor.entrada(true); visor.camada('fios', true); visor.camada('cabos-usb', true); visor.ocultar('cabos-usb', false);
