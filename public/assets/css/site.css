@@ -477,3 +477,51 @@ html[data-modo="publicado"] .slot[data-vazio] { display: none !important; }
 .modelo3d__cabeca h3 { margin-bottom: 0; }
 .modelo3d__cheia { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid var(--c-petroleo); border-radius: 8px; font-size: 0.9375rem; font-weight: 600; text-decoration: none; color: var(--c-petroleo); }
 .modelo3d__cheia:hover { background: var(--c-petroleo); color: var(--c-amarelo); }
+
+/* ============ Celular ============ */
+.modelo3d__capa { display: none; }
+.galeria__dica { display: none; }
+.barra-cta { display: none; }
+.no-js .modelo3d__moldura, .no-js .modelo3d__cheia { display: none; }
+.no-js .modelo3d__capa { display: block; }
+
+@media (max-width: 767px) {
+  /* abertura: título, produto, texto, botões. O produto aparece inteiro, sem corte nem degradê */
+  .hero__figura { order: 0; width: 100%; margin: 0 0 var(--e-4); }
+  /* a arte tem sobra vazia embaixo: a moldura corta só essa sobra */
+  .hero__moldura { width: min(100%, 340px); margin-inline: auto; aspect-ratio: 800 / 290; -webkit-mask-image: none; mask-image: none; }
+  .hero__controles { flex-direction: row; justify-content: center; margin: var(--e-2) 0 0; }
+  .hero__figura figcaption { text-align: center; padding: 0; margin-top: var(--e-2); }
+  .hero__brilho { display: none; }
+  .hero__h1 { margin-bottom: var(--e-4); }
+
+  /* destaques em duas colunas, para não virar uma pilha longa */
+  .destaques { padding-bottom: var(--e-4); }
+  .problema { padding-top: var(--e-7); }
+  .problema__figura { width: min(56vw, 230px); margin-inline: auto; }
+  .problema__figura figcaption { text-align: center; }
+
+  .galeria__dica { display: block; margin-bottom: var(--e-3); color: var(--c-texto-suave); }
+
+  /* modelo 3D: um quadro interativo pequeno prende a rolagem; aqui ele abre em tela cheia */
+  .modelo3d__moldura, .modelo3d__cheia { display: none; }
+  .modelo3d__capa { display: block; }
+
+  .caixa { min-height: 44px; align-items: center; }
+
+  html { scroll-padding-bottom: 96px; }
+  .barra-cta { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; padding: 10px var(--margem) calc(10px + env(safe-area-inset-bottom, 0px)); background: rgba(6, 26, 35, 0.96); box-shadow: 0 -6px 20px rgba(6, 26, 35, 0.25); }
+  .barra-cta[hidden] { display: none; }
+  .barra-cta .botao { width: 100%; min-height: 48px; }
+}
+@media (min-width: 360px) and (max-width: 767px) {
+  .destaques__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--e-2); }
+  .destaques__lista li { padding: 14px 12px; border-radius: 12px; }
+  .destaques__lista h3 { font-size: 0.8125rem; letter-spacing: 0.02em; }
+  .destaques__lista p { font-size: 0.8125rem; line-height: 1.5; }
+}
+.modelo3d__capa { overflow: hidden; border-radius: 16px; border: 1px solid var(--c-borda-clara); background: #e6e3da; text-decoration: none; }
+.modelo3d__capa img { width: 100%; height: auto; }
+.modelo3d__capa .botao { display: flex; margin: 0 12px 12px; }
+/* celular deitado: sem barra fixa, a tela já é baixa */
+@media (max-height: 480px) { .barra-cta { display: none; } }

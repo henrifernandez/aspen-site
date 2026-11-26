@@ -73,16 +73,6 @@
       <img class="marca-dagua" src="assets/img/marca-dagua-escudo-720.webp" width="720" height="726" alt="" aria-hidden="true" loading="lazy" fetchpriority="low" decoding="async" data-sobrepoe="ok">
       <div class="conteudo hero__grade">
         <h1 id="hero-titulo" class="hero__h1">A chave que confirma que é <span class="destaque">você</span></h1>
-        <p class="hero__sub">A Aspen Key foi pensada para ficar no seu chaveiro. Depois de digitar a senha, você aproxima a chave do celular e confirma o acesso à sua conta.</p>
-        <p class="hero__cta"><a class="botao botao--claro" href="#lista">Quero ser avisado</a><a class="botao botao--contorno" href="#ideia">Ver como funciona</a></p>
-        <div class="aviso aviso--escuro">
-          <svg class="aviso__icone" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>
-          <div class="aviso__corpo">
-            <p class="aviso__titulo">Protótipo em desenvolvimento. O design final pode mudar.</p>
-            <p>O protótipo já conclui o acesso a um site de teste, mas ainda não foi usado em contas reais.</p>
-            <p><a href="#prototipo">Conhecer o protótipo</a></p>
-          </div>
-        </div>
         <figure class="hero__figura">
           <div class="hero__moldura">
            <div class="hero__caixa">
@@ -111,6 +101,16 @@
           </div>
           <figcaption>Ilustração da ideia final. O protótipo de hoje é diferente.</figcaption>
         </figure>
+        <p class="hero__sub">A Aspen Key foi pensada para ficar no seu chaveiro. Depois de digitar a senha, você aproxima a chave do celular e confirma o acesso à sua conta.</p>
+        <p class="hero__cta"><a class="botao botao--claro" href="#lista">Quero ser avisado</a><a class="botao botao--contorno" href="#ideia">Ver como funciona</a></p>
+        <div class="aviso aviso--escuro">
+          <svg class="aviso__icone" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>
+          <div class="aviso__corpo">
+            <p class="aviso__titulo">Protótipo em desenvolvimento. O design final pode mudar.</p>
+            <p>O protótipo já conclui o acesso a um site de teste, mas ainda não foi usado em contas reais.</p>
+            <p><a href="#prototipo">Conhecer o protótipo</a></p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -257,6 +257,7 @@
       <!-- Fotos reais da bancada (25/11/2026). Exportadas por ferramentas/exportar_bancada.py a partir de origem/fotos-bancada/. -->
       <div class="galeria" id="galeria">
         <h3 id="galeria-titulo">Fotos do protótipo</h3>
+        <p class="pequeno galeria__dica">Deslize para o lado para ver as 8 fotos.</p>
         <ul class="galeria__lista" aria-labelledby="galeria-titulo" tabindex="0">
           <li class="galeria__item"><figure>
             <img src="assets/img/proto-visao-geral-720.webp" srcset="assets/img/proto-visao-geral-400.webp 400w, assets/img/proto-visao-geral-720.webp 720w" sizes="(min-width: 1024px) 270px, (min-width: 768px) 45vw, 72vw" width="720" height="960"
@@ -301,8 +302,12 @@
           <a class="modelo3d__cheia" href="prototipo-3d.html" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg>Abrir em tela cheia<span class="visualmente-oculto"> (abre em outra aba)</span></a>
         </div>
         <p class="modelo3d__intro">Arraste para girar a montagem e selecione uma peça para ver a sua função. Em "Como funciona", acompanhe o acesso a um site de teste pelo USB. A parte do NFC ilustra um uso que ainda não está ativo no protótipo.</p>
+        <a class="modelo3d__capa" href="prototipo-3d.html">
+          <img src="assets/img/modelo3d-capa-800.webp" srcset="assets/img/modelo3d-capa-480.webp 480w, assets/img/modelo3d-capa-800.webp 800w" sizes="(min-width: 768px) 100vw, 90vw" width="800" height="600" alt="" loading="lazy" decoding="async">
+          <span class="botao botao--petroleo">Explorar o modelo em 3D</span>
+        </a>
         <div class="modelo3d__moldura">
-          <iframe src="prototipo-3d.html" title="Modelo 3D interativo do protótipo de hoje da Aspen Key" loading="lazy" allow="fullscreen"></iframe>
+          <iframe data-src="prototipo-3d.html" title="Modelo 3D interativo do protótipo de hoje da Aspen Key" loading="lazy" allow="fullscreen"></iframe>
         </div>
       </div>
 
@@ -429,5 +434,8 @@
     </div>
   </div>
 </footer>
+
+<!-- Atalho para a lista de espera no celular. site.js mostra quando o botao do topo e o formulario estao fora da tela. -->
+<div class="barra-cta modo-escuro" id="barra-cta" hidden><a class="botao botao--claro" href="#lista">Quero ser avisado</a></div>
 </body>
 </html>

@@ -67,6 +67,22 @@ async function avisarEquipe(env, email, quando) {
   }
 }
 
+/* freio simples contra enchente: conta inscrições por minuto, sem guardar nada de pessoa.
+   O KV aceita só 1 gravação por segundo na mesma chave, então falhar ao gravar o contador NUNCA pode impedir a
+   inscrição. A contagem em memória desta instância segura as rajadas em que o contador do KV não consegue subir. */
+var freio = { minuto: 0, n: 0 };
+
+async function passouDoLimite(kv) {
+  var minuto = Math.floor(Date.now() / 60000);
+  if (freio.minuto !== minuto) { freio.minuto = minuto; freio.n = 0; }
+  var nesta = ++freio.n; /* soma antes de qualquer espera, para pedidos simultâneos não passarem juntos */
+  var chave = 'rl:' + minuto, n = 0;
+  try { n = parseInt((await kv.get(chave)) || '0', 10) || 0; } catch (e) {}
+  if (n >= LIMITE_POR_MINUTO || nesta > LIMITE_POR_MINUTO) return true;
+  try { await kv.put(chave, String(n + 1), { expirationTtl: 120 }); } catch (e) {}
+  return false;
+}
+
 export async function onRequestPost(contexto) {
   var request = contexto.request, env = contexto.env;
   var querJson = (request.headers.get('Accept') || '').indexOf('application/json') !== -1;
@@ -101,11 +117,7 @@ export async function onRequestPost(contexto) {
 
   if (kv) {
     try {
-      /* freio simples contra enchente: conta inscrições por minuto, sem guardar nada de pessoa */
-      var minuto = 'rl:' + Math.floor(Date.now() / 60000);
-      var n = parseInt((await kv.get(minuto)) || '0', 10);
-      if (n >= LIMITE_POR_MINUTO) return terminar({ ok: false, erro: MSG.muitas }, 429);
-      await kv.put(minuto, String(n + 1), { expirationTtl: 120 });
+      if (await passouDoLimite(kv)) return terminar({ ok: false, erro: MSG.muitas }, 429);
 
       var chave = 'e:' + email;
       var ja = await kv.get(chave);

@@ -105,6 +105,9 @@ host.addEventListener('pointerdown', esconderDica, true);
 host.addEventListener('wheel', esconderDica, { passive: true });
 setTimeout(esconderDica, 9000);
 
+/* "Voltar ao site" so quando a pagina esta aberta sozinha (embutida no index ela nao aparece) */
+if (window.top === window.self) $('voltar').hidden = false;
+
 /* ---------- vista explodida: separa e junta as peças (os fios somem enquanto estão separadas) ---------- */
 var btnExplodir = $('btn-explodir');
 function marcarExplodir(ligado) {

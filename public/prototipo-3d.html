@@ -20,7 +20,11 @@
   .tela { position: fixed; inset: 0; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto auto; }
   .tela--anim { grid-template-rows: auto minmax(0, 1fr) auto; }
   .topo { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--creme); border-bottom: 1px solid var(--borda); }
-  .titulo { background: var(--petroleo); color: var(--amarelo); padding: 6px 12px; border-radius: 10px; font-weight: 600; font-size: 0.92rem; line-height: 1.3; }
+  h1.titulo { margin: 0; }
+  .voltar span[aria-hidden] { margin-right: 6px; }
+  .voltar__resto { white-space: pre; }
+  .voltar { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--petroleo); color: var(--petroleo); font-size: 0.85rem; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .titulo { margin-right: auto; background: var(--petroleo); color: var(--amarelo); padding: 6px 12px; border-radius: 10px; font-weight: 600; font-size: 0.92rem; line-height: 1.3; }
   .titulo small { display: block; font-weight: 400; opacity: 0.9; font-size: 0.74rem; }
   /* duas abas, como um seletor único */
   .modos { display: inline-flex; padding: 3px; border-radius: 999px; border: 1px solid var(--petroleo); background: var(--tile); }
@@ -113,13 +117,49 @@
     .titulo small { display: none; }
     .nota { padding: 4px 14px 6px; font-size: 0.66rem; }
   }
+  /* celular em pé: o modelo fica com quase toda a tela; as peças viram uma fileira que desliza */
+  @media (max-width: 899px) {
+    .tela { grid-template-rows: auto minmax(0, 1fr) auto auto; }
+    .tela--anim { grid-template-rows: auto minmax(0, 1fr) auto; }
+    .topo { flex-wrap: nowrap; justify-content: space-between; gap: 8px; padding: 8px 10px; }
+    .titulo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .modos { margin-left: auto; }
+    .modo { min-height: 40px; padding: 0 12px; }
+    .painel { padding: 8px 10px; max-height: 38vh; }
+    .rotulo { display: none; }
+    .lista { display: flex; overflow-x: auto; gap: 8px; padding-bottom: 6px; scroll-snap-type: x proximity; }
+    .lista li { flex: none; scroll-snap-align: start; }
+    .chip { width: auto; min-height: 44px; white-space: nowrap; padding-right: 14px; }
+    .cartao { margin-top: 6px; }
+    .cartao--vazio { padding: 8px 12px; }
+    .cartao--vazio p { font-size: 0.8rem; }
+    .nota { padding: 4px 10px calc(6px + env(safe-area-inset-bottom, 0px)); }
+    .nota__longa { display: none; }
+    .dica-visor { white-space: normal; width: max-content; max-width: calc(100% - 24px); text-align: center; }
+  }
+  @media (max-width: 359px) { .voltar__resto { display: none; } .modo { padding: 0 9px; font-size: 0.8rem; } }
+  /* celular deitado: modelo à esquerda, peças à direita */
+  @media (orientation: landscape) and (max-height: 520px) {
+    .tela { grid-template-columns: minmax(0, 1fr) 240px; grid-template-rows: auto minmax(0, 1fr); }
+    .tela--anim { grid-template-columns: minmax(0, 1fr); }
+    .topo { grid-column: 1 / -1; padding: 4px 10px; }
+    .palco { grid-column: 1; grid-row: 2; }
+    .painel { grid-column: 2; grid-row: 2; max-height: none; border-top: 0; border-left: 1px solid var(--borda); }
+    .lista { display: grid; grid-template-columns: minmax(0, 1fr); overflow: visible; }
+    .chip { width: 100%; white-space: normal; }
+    .nota { display: none; }
+    .legenda, .palco--anim .legenda { top: 8px; bottom: auto; max-width: 16rem; padding: 8px 10px; }
+    .legenda strong { font-size: 0.85rem; }
+    .legenda span { font-size: 0.75rem; }
+  }
   @media (prefers-reduced-motion: reduce) { .dica-visor, .pino, .modo { transition: none; } }
 </style>
 </head>
 <body>
 <div class="tela" id="tela">
   <header class="topo">
-    <div class="titulo">Protótipo de hoje em 3D<small>Modelo ilustrativo, construído a partir das fotos do protótipo</small></div>
+    <a class="voltar" id="voltar" href="./#modelo3d" hidden><span aria-hidden="true">←</span> Voltar<span class="voltar__resto"> ao site</span></a>
+    <h1 class="titulo">Protótipo de hoje em 3D<small>Modelo ilustrativo, construído a partir das fotos do protótipo</small></h1>
     <div class="modos" role="group" aria-label="Modo de visualização">
       <button type="button" class="modo" data-modo="explorar" aria-pressed="true">Peças</button>
       <button type="button" class="modo" data-modo="anim" aria-pressed="false">Como funciona</button>
@@ -149,8 +189,8 @@
     <div class="cartao cartao--vazio" id="cartao" role="region" aria-live="polite" aria-label="Descrição da peça"></div>
   </aside>
 
-  <p class="nota" id="nota-pecas">Modelo ilustrativo, construído por código a partir das fotos do protótipo. As medidas das peças seguem padrões de mercado e a posição dos fios é aproximada. Firmware experimental de laboratório, sem certificação FIDO.</p>
-  <p class="nota" id="nota-anim" hidden>Animação ilustrativa do protótipo: PIN, toque, assinatura no chip de segurança e verificação no navegador. Sem certificação FIDO e ainda não utilizado em contas reais.</p>
+  <footer class="nota" id="nota-pecas"><span class="nota__longa">Modelo ilustrativo, construído por código a partir das fotos do protótipo. As medidas das peças seguem padrões de mercado e a posição dos fios é aproximada. </span>Firmware experimental de laboratório, sem certificação FIDO.</footer>
+  <footer class="nota" id="nota-anim" hidden><span class="nota__longa">Animação ilustrativa do protótipo: PIN, toque, assinatura no chip de segurança e verificação no navegador. </span>Sem certificação FIDO e ainda não utilizado em contas reais.</footer>
 </div>
 <noscript><p class="erro">Este modelo 3D precisa de JavaScript.</p></noscript>
 <script type="module" src="assets/js/modelo3d/app.js"></script>

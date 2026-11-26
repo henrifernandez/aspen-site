@@ -8,6 +8,32 @@
   var reduzido = false;
   try { reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
 
+  /* Modelo 3D do prototipo: o quadro interativo so carrega em tela grande (no celular a capa abre em tela cheia) */
+  (function () {
+    var quadro = doc.querySelector('.modelo3d__moldura iframe[data-src]');
+    if (!quadro || !window.matchMedia) return;
+    var larga = window.matchMedia('(min-width: 768px)');
+    function ligar() { if (larga.matches && !quadro.src) quadro.src = quadro.getAttribute('data-src'); }
+    ligar();
+    if (larga.addEventListener) larga.addEventListener('change', ligar);
+  })();
+
+  /* Barra "Quero ser avisado" do celular: aparece quando nem o botao do topo, nem o formulario, nem o rodape estao na tela */
+  (function () {
+    var barra = doc.getElementById('barra-cta');
+    var alvos = [doc.querySelector('.hero__cta'), doc.getElementById('lista'), doc.querySelector('.rodape')].filter(Boolean);
+    if (!barra || !alvos.length || !('IntersectionObserver' in window)) return;
+    var naTela = new Set(), passouDoTopo = false;
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (en) {
+        if (en.isIntersecting) naTela.add(en.target); else naTela.delete(en.target);
+        if (en.target === alvos[0]) passouDoTopo = !en.isIntersecting && en.boundingClientRect.top < 0;
+      });
+      barra.hidden = !passouDoTopo || naTela.size > 0;
+    });
+    alvos.forEach(function (a) { obs.observe(a); });
+  })();
+
   /* Revelacao dos tres passos, uma vez, so com IntersectionObserver e sem movimento reduzido */
   var passos = doc.querySelectorAll('.passos li');
   if (passos.length && 'IntersectionObserver' in window && !reduzido) {
